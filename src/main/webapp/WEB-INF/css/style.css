@@ -1,0 +1,12 @@
+#demoFont {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 19px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}
