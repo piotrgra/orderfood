@@ -9,9 +9,14 @@
         <tr>
             <th>Menu:</th>
         </tr>
+
+        <tr>
+            <td>- <a href="/">Wszystkie ( ${allItems.size()} )</a></td>
+        </tr>
+
         <c:forEach items="${categories}" var="c">
             <tr>
-                <td class="menu-item-list">- ${c.name} ( ${c.items.size()} )</td>
+                <td class="menu-item-list">- <a href="/menu/${c.id}">${c.name} ( ${c.items.size()} )</a></td>
             </tr>
         </c:forEach>
     </table>

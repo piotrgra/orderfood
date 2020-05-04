@@ -31,13 +31,21 @@ public class HomeController {
         return categoryRepository.findAll();
     }
 
-    @ModelAttribute("items")
+    @ModelAttribute("allItems")
     public List<Item> items() {
         return itemRepository.findAll();
     }
 
     @GetMapping("")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("items", itemRepository.findAll());
+        return "index";
+    }
+
+    @GetMapping("/menu/{id}")
+    public String homeMenu(@PathVariable long id, Model model) {
+        List<Item> items = itemRepository.findAllByCategoryId(id);
+        model.addAttribute("items", items);
         return "index";
     }
 
