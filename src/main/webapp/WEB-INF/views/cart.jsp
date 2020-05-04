@@ -15,7 +15,7 @@
         <c:forEach items="${cart}" var="c">
             <tr>
                 <th><img src="/resources/image/menu-img-01.jpg" alt="${c.product.name}" width="40%" height="35%"></th>
-                <th>${c.product.name} <br/> ${c.product.name}</th>
+                <th>${c.product.name} <br/> ${c.product.description}</th>
                 <th>${c.product.price}</th>
                 <th>Ilość: ${c.quantity}</th>
             </tr>

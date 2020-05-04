@@ -11,7 +11,7 @@
         </tr>
         <c:forEach items="${categories}" var="c">
             <tr>
-                <td class="menu-item-list">- ${c.name} ( ${c.items.size()} )</td>
+                <td class="menu-item-list">- ${c.name} ( )</td>
             </tr>
         </c:forEach>
     </table>

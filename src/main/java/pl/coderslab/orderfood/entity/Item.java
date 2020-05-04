@@ -22,7 +22,7 @@ public class Item {
     @NotEmpty
     private String image;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 

@@ -42,7 +42,7 @@ public class HomeController {
     }
 
     @GetMapping("addToCart/{id}/{quantity}")
-    public String addToCart(@PathVariable long id, @PathVariable int quantity, Model model){
+    public String addToCart(@PathVariable long id, @PathVariable int quantity, Model model) {
         Item item = itemRepository.findById(id).get();
 
         cart.getCartItems().add(new CartItem(item, quantity));
@@ -51,11 +51,9 @@ public class HomeController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model model){
+    public String cart(Model model) {
         model.addAttribute("cart", cart.getCartItems());
         return "cart";
     }
-
-
 
 }

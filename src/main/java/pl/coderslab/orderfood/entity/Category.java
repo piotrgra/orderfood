@@ -2,6 +2,7 @@ package pl.coderslab.orderfood.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +16,8 @@ public class Category {
     @NotEmpty
     private String name;
 
-    @OneToMany
-    private List<Item> items;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Item> items = new ArrayList<>();
 
     public long getId() {
         return id;
