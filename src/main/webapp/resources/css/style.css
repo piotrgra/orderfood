@@ -1,0 +1,59 @@
+body {
+    max-width: 70%;
+    margin: auto;
+    align-self: center;
+    align-content: center;
+}
+
+table.header {
+    width: 100%;
+    align-content: center;
+    align-self: center;
+}
+
+#menu {
+    width: 15%;
+    float: left;
+    border: 1px solid black;
+    margin-left: 10%;
+}
+
+#items {
+    width: 55%;
+    float: left;
+    border: 1px solid black;
+    align-content: center;
+}
+
+td.menu-item-list {
+
+}
+
+/* CSS for table items in frontpage */
+td.item-img {
+    max-width: 20%;
+}
+
+td.item-name {
+    width: 20%;
+    align-content: center;
+}
+
+td.item-description {
+    width: 30%;
+    align-content: center;
+}
+
+td.item-price {
+    width: 20%;
+    align-content: center;
+}
+
+td.item-cart {
+    width: 10%;
+    align-content: center;
+}
+
+/* CSS for table items in frontpage */
+
+
