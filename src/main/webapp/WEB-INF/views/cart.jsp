@@ -19,13 +19,13 @@
                 <td class="cart-loop">${loop.count}. </td>
                 <td class="cart-name">${c.product.name}</td>
                 <td class="cart-description">${c.product.description}</td>
-                <td class="cart-price">${c.product.price} zł</td>
                 <td class="cart-quantity">${c.quantity}</td>
-                <td>X</td>
+                <td class="cart-price">${c.product.price} zł</td>
+                <td><a href="/removeFromCart/${c.product.id}">X</a></td>
             </tr>
         </c:forEach>
         <tr>
-            <td>Koszt: ${totalPrice} zł</td>
+            <td>Suma: ${totalPrice} zł</td>
         </tr>
         <tr>
             <td>

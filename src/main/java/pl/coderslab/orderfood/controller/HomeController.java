@@ -57,9 +57,15 @@ public class HomeController {
     @GetMapping("addToCart/{id}/{quantity}")
     public String addToCart(@PathVariable long id, @PathVariable int quantity, Model model) {
         Item item = itemRepository.findById(id).get();
+        List<CartItem> cartItems = cart.getCartItems();
 
+        for (CartItem cartItem : cartItems) {
+            if (cartItem.getProduct().getId() == id) {
+                cartItem.setQuantity(cartItem.getQuantity() + quantity);
+                return "redirect:/";
+            }
+        }
         cart.getCartItems().add(new CartItem(item, quantity));
-
         return "redirect:/";
     }
 
@@ -73,6 +79,15 @@ public class HomeController {
         }
 
         model.addAttribute("totalPrice", totalPrice);
+        return "cart";
+    }
+
+    @GetMapping("/removeFromCart/{id}")
+    public String removeFromCart(@PathVariable long id, Model model) {
+        List<CartItem> cartItems = cartItems();
+
+        cartItems.removeIf(cartItem -> cartItem.getProduct().getId() == id);
+
         return "cart";
     }
 
