@@ -1,25 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<head>
-    <title>Order Food!</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
+<jsp:include page="header.jsp"/>
 
 <body>
-<h1>Zamow jedzonko!</h1><br/>
-<h2>Menu:</h2>
-<p> Świeze pyszne jedzonko prosze od najlepszych kucharzy na swiecie!</p>
 <div>
-    <table>
-        <c:forEach items="${cart}" var="c">
+    <table id="cart">
+        <tr>
+            <th colspan="5">Koszyk:</th>
+        </tr>
+        <c:if test="${empty cart}">
             <tr>
-                <th><img src="/resources/image/menu-img-01.jpg" alt="${c.product.name}" width="40%" height="35%"></th>
-                <th>${c.product.name} <br/> ${c.product.description}</th>
-                <th>${c.product.price}</th>
-                <th>Ilość: ${c.quantity}</th>
+                <td>Czemu masz pusty koszyk ?! :( Zamów coś i daj zarobić! :)</td>
+            </tr>
+        </c:if>
+        <c:forEach items="${cart}" var="c" varStatus="loop">
+            <tr>
+                <td class="cart-loop">${loop.count}. </td>
+                <td class="cart-name">${c.product.name}</td>
+                <td class="cart-description">${c.product.description}</td>
+                <td class="cart-price">${c.product.price} zł</td>
+                <td class="cart-quantity">${c.quantity}</td>
+                <td>X</td>
             </tr>
         </c:forEach>
+        <tr>
+            <td>Koszt: ${totalPrice} zł</td>
+        </tr>
+        <tr>
+            <td>
+                Zamawiam
+            </td>
+        </tr>
     </table>
 </div>
 </body>

@@ -10,13 +10,13 @@
     <table class="header">
         <tr>
             <td>
-                <img src="<c:url value="/resources/image/logo.png"/>">
+                <a href="/"><img src="<c:url value="/resources/image/logo.png"/>"></a>
             </td>
             <td>
                 <h1>The Food App ! :)</h1>
             </td>
             <td>
-                <img src="<c:url value="/resources/image/cart.jpg"/>" width="30" height="30"> Koszyk: (0)
+                <a href="/cart"><img src="<c:url value="/resources/image/cart.jpg"/>" width="30" height="30"> Koszyk: ( ${cart.size()})</a>
             </td>
         </tr>
     </table>

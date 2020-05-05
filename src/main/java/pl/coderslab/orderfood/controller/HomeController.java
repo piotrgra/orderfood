@@ -36,6 +36,11 @@ public class HomeController {
         return itemRepository.findAll();
     }
 
+    @ModelAttribute("cart")
+    public List<CartItem> cartItems() {
+        return cart.getCartItems();
+    }
+
     @GetMapping("")
     public String home(Model model) {
         model.addAttribute("items", itemRepository.findAll());
@@ -60,7 +65,14 @@ public class HomeController {
 
     @GetMapping("/cart")
     public String cart(Model model) {
-        model.addAttribute("cart", cart.getCartItems());
+        List<CartItem> cartItems = cart.getCartItems();
+        double totalPrice = 0;
+
+        for (CartItem cartItem : cartItems) {
+            totalPrice += cartItem.getProduct().getPrice();
+        }
+
+        model.addAttribute("totalPrice", totalPrice);
         return "cart";
     }
 
