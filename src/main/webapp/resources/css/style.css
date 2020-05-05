@@ -4,6 +4,10 @@ body {
     align-self: center;
     align-content: center;
 }
+#cartTitle {
+    margin-left: 50%;
+    margin-right: 50%;
+}
 
 table.header {
     width: 100%;
@@ -27,7 +31,7 @@ table.header {
 }
 
 #cart {
-    width: 55%;
+    width: 50%;
     margin-left:auto;
     margin-right:auto;
     border: 1px solid black;

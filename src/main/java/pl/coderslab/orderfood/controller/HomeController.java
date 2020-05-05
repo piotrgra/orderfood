@@ -75,7 +75,7 @@ public class HomeController {
         double totalPrice = 0;
 
         for (CartItem cartItem : cartItems) {
-            totalPrice += cartItem.getProduct().getPrice();
+            totalPrice += cartItem.getProduct().getPrice() * cartItem.getQuantity();
         }
 
         model.addAttribute("totalPrice", totalPrice);
