@@ -15,9 +15,11 @@
         </tr>
 
         <c:forEach items="${categories}" var="c">
-            <tr>
-                <td class="menu-item-list">- <a href="/menu/${c.id}">${c.name} ( ${c.items.size()} )</a></td>
-            </tr>
+            <c:if test="${c.items.size() != 0}">
+                <tr>
+                    <td class="menu-item-list">- <a href="<c:url value="/menu/${c.id}"/>">${c.name} ( ${c.items.size()})</a></td>
+                </tr>
+            </c:if>
         </c:forEach>
     </table>
     <table id="items">
@@ -26,13 +28,15 @@
         </tr>
         <c:forEach items="${items}" var="i">
             <tr>
-                <td class="item-img"><img src="/resources/image/menu-img-01.jpg" alt="${i.name}" width="200"
+                <td class="item-img"><img src="<c:url value="/resources/image/menu-img-01.jpg"/>" alt="${i.name}"
+                                          width="200"
                                           height="150"></td>
                 <td class="item-name">${i.name}</td>
                 <td class="item-description">${i.description}</td>
                 <td class="item-price">${i.price} zł</td>
-                <td class="item-cart"><a href="addToCart/${i.id}/1"><img src="/resources/image/cart.jpg" width="30"
-                                                                         height="30"></a></td>
+                <td class="item-cart"><a href="<c:url value="/addToCart/${i.id}/1"/>"><img
+                        src="<c:url value="/resources/image/cart.jpg"/>" width="30"
+                        height="30"></a></td>
             </tr>
         </c:forEach>
     </table>
