@@ -85,15 +85,4 @@ public class Item {
     public Item() {
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", image='" + image + '\'' +
-                ", category=" + category +
-                '}';
-    }
 }

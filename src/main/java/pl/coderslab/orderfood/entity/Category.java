@@ -16,7 +16,7 @@ public class Category {
     @NotEmpty
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Item> items = new ArrayList<>();
 
     public long getId() {
@@ -46,12 +46,4 @@ public class Category {
     public Category() {
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", items=" + items +
-                '}';
-    }
 }

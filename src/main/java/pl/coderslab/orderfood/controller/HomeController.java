@@ -9,9 +9,15 @@ import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
 import pl.coderslab.orderfood.entity.Category;
 import pl.coderslab.orderfood.entity.Item;
+import pl.coderslab.orderfood.entity.Order;
+import pl.coderslab.orderfood.entity.OrderItem;
 import pl.coderslab.orderfood.repository.CategoryRepository;
 import pl.coderslab.orderfood.repository.ItemRepository;
+import pl.coderslab.orderfood.repository.OrderItemRepository;
+import pl.coderslab.orderfood.repository.OrderRepository;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,11 +25,15 @@ public class HomeController {
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
     private final Cart cart;
+    private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
 
-    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart) {
+    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.cart = cart;
+        this.orderItemRepository = orderItemRepository;
+        this.orderRepository = orderRepository;
     }
 
     @ModelAttribute("categories")
@@ -90,5 +100,32 @@ public class HomeController {
 
         return "cart";
     }
+
+    @GetMapping("/placeOrder")
+    public String placeOrder(HttpSession session) {
+        List<CartItem> cartItems = cartItems();
+        List<OrderItem> orderItems = new ArrayList<>();
+        Order order = new Order();
+
+        for (CartItem cartItem : cartItems) {
+
+            Item item = cartItem.getProduct();
+            int quantity = cartItem.getQuantity();
+            OrderItem orderItem = new OrderItem();
+
+            orderItem.setItem(item);
+            orderItem.setQuantity(quantity);
+
+            orderItems.add(orderItem);
+            orderItemRepository.save(orderItem);
+        }
+        order.setOrderItems(orderItems);
+        orderRepository.save(order);
+
+        session.invalidate();
+
+        return "redirect:/";
+    }
+
 
 }
