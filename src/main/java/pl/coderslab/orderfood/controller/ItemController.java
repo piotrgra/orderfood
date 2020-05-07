@@ -43,7 +43,7 @@ public class ItemController {
     @PostMapping("/add")
     public String addNewItemForm(@ModelAttribute Item item) {
         itemRepository.save(item);
-        return "redirect:/admin/item";
+        return "redirect:/admin/";
     }
 
     @GetMapping("")
@@ -55,7 +55,7 @@ public class ItemController {
     public String deleteItem(@PathVariable long id) {
         Optional<Item> item = itemRepository.findById(id);
         item.ifPresent(itemRepository::delete);
-        return "redirect:/admin/item";
+        return "redirect:/admin/";
     }
 
     @GetMapping("/update/{id}")

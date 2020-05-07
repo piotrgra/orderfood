@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/admin/item")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final ItemRepository itemRepository;
@@ -33,36 +33,10 @@ public class AdminController {
         return itemRepository.findAll();
     }
 
-    @GetMapping("/add")
-    public String addNewItem(Model model) {
-
-        model.addAttribute("item", new Item());
-        return "admin/product-form";
-    }
-
-    @PostMapping("/add")
-    public String addNewItemForm(@ModelAttribute Item item) {
-        itemRepository.save(item);
-        return "redirect:/admin/item";
-    }
 
     @GetMapping("")
     public String listOfItems() {
-        return "/admin/item-list";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteItem(@PathVariable long id) {
-        Optional<Item> item = itemRepository.findById(id);
-        item.ifPresent(itemRepository::delete);
-        return "redirect:/admin/item";
-    }
-
-    @GetMapping("/update/{id}")
-    public String updateItem(@PathVariable long id, Model model) {
-        Optional<Item> item = itemRepository.findById(id);
-        item.ifPresent(value -> model.addAttribute("item", value));
-        return "admin/product-form";
+        return "/admin/dashboard";
     }
 
 

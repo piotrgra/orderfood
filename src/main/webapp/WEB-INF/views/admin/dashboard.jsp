@@ -5,17 +5,26 @@
 
 <body>
 <div>
-    <table id="menu">
-        <tr>
-            <th>Menu:</th>
-        </tr>
-
-        <tr>
-
-        </tr>
-    </table>
+    <jsp:include page="menu-dashboard.jsp"/>
     <table id="items">
-
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Cena</th>
+            <th>Kategoria</th>
+            <th>Usun</th>
+            <th>Edytuj</th>
+        </tr>
+        <c:forEach items="${items}" var="i">
+            <tr>
+                <td>${i.name}</td>
+                <td>${i.description}</td>
+                <td>${i.price}</td>
+                <td>${i.category.name}</td>
+                <td><a href="<c:url value="admin/item/delete/${i.id}"/>">Delete</a></td>
+                <td><a href="<c:url value="admin/item/update/${i.id}"/>">Edit</a></td>
+            </tr>
+        </c:forEach>
     </table>
 </div>
 </body>

@@ -1,17 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<head>
-    <title>Lista kategorii:</title>
-</head>
+<jsp:include page="../header.jsp"/>
+
 <body>
-<a href="<c:url value="/admin/category/add"/>">Add new category</a>
-<hr/>
-<c:forEach items="${categories}" var="c">
-    <p>Name: ${c.name}</p>
-    <a href="category/delete/${c.id}">Delete</a>
-    <a href="category/update/${c.id}">Edit</a>
-    <hr/>
-</c:forEach>
+<div>
+    <jsp:include page="menu-dashboard.jsp"/>
+    <table id="items">
+        <tr>
+            <th>Id</th>
+            <th>Nazwa</th>
+            <th>Usun</th>
+            <th>Edytuj</th>
+        </tr>
+        <c:forEach items="${categories}" var="c">
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.name}</td>
+                <td><a href="<c:url value="admin/category/delete/${c.id}"/>">Delete</a></td>
+                <td><a href="<c:url value="admin/category/update/${c.id}"/>">Edit</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>
