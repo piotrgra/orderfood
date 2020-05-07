@@ -7,18 +7,49 @@
 <body>
 <div>
     <h1>Kasa:</h1>
-<form:form method="post" action="/processOrder">
-    <form:label path="firstName">First Name:</form:label>
-    <form:input path="firstName"/>
-    <form:errors path="firstName" cssClass="errorMessage"/>
+    <table>
+        <tr>
+            <th>Produkt:</th>
+            <th>Ilość:</th>
+            <th>Cena:</th>
+        </tr>
+        <c:forEach items="${cart}" var="c" varStatus="loop">
+            <tr>
+                <td>${loop.count}. ${c.product.name}</td>
+                <td>${c.quantity} x</td>
+                <td>${c.product.price * c.quantity} zł</td>
+            </tr>
+        </c:forEach>
+        <tr>
+            <td colspan="3">Łącznie: ${totalPrice}</td>
+        </tr>
+    </table>
 
-    <form:label path="lastName">Last Name:</form:label>
-    <form:input path="lastName"/>
-    <form:errors path="lastName" cssClass="errorMessage"/>
+    <form:form method="post" modelAttribute="order" action="/placeOrder">
+        <form:label path="name">Name:</form:label>
+        <form:input path="name"/>
+        <form:errors path="name" cssClass="errorMessage"/><br/>
 
-    
 
-</form:form>
+        <form:label path="address">Address:</form:label>
+        <form:input path="address"/>
+        <form:errors path="address" cssClass="errorMessage"/><br/>
+
+
+        <form:label path="email">Email:</form:label>
+        <form:input path="email"/>
+        <form:errors path="email" cssClass="errorMessage"/><br/>
+
+
+        <form:label path="phone">Phone number:</form:label>
+        <form:input path="phone"/>
+        <form:errors path="phone" cssClass="errorMessage"/><br/>
+
+        <form:hidden path="id"/>
+
+        <%--    <form:errors path="*" cssClass="errorMessage"/>--%>
+        <input type="submit" value="Submit"/>
+    </form:form>
 
 </div>
 </body>

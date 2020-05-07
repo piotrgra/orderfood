@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>
-                Zamawiam
+                <a href="/order">Zamawiam</a>
             </td>
         </tr>
     </table>

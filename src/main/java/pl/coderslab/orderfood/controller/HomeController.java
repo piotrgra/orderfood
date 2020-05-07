@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
 import pl.coderslab.orderfood.entity.Category;
@@ -51,6 +52,17 @@ public class HomeController {
         return cart.getCartItems();
     }
 
+    @ModelAttribute("totalPrice")
+    public double totalPrice() {
+        List<CartItem> cartItems = cart.getCartItems();
+        double totalPrice = 0;
+
+        for (CartItem cartItem : cartItems) {
+            totalPrice += cartItem.getProduct().getPrice() * cartItem.getQuantity();
+        }
+        return totalPrice;
+    }
+
     @GetMapping("")
     public String home(Model model) {
         model.addAttribute("items", itemRepository.findAll());
@@ -75,20 +87,12 @@ public class HomeController {
                 return "redirect:/";
             }
         }
-        cart.getCartItems().add(new CartItem(item, quantity));
+        cartItems.add(new CartItem(item, quantity));
         return "redirect:/";
     }
 
     @GetMapping("/cart")
-    public String cart(Model model) {
-        List<CartItem> cartItems = cart.getCartItems();
-        double totalPrice = 0;
-
-        for (CartItem cartItem : cartItems) {
-            totalPrice += cartItem.getProduct().getPrice() * cartItem.getQuantity();
-        }
-
-        model.addAttribute("totalPrice", totalPrice);
+    public String cart() {
         return "cart";
     }
 
@@ -98,14 +102,21 @@ public class HomeController {
 
         cartItems.removeIf(cartItem -> cartItem.getProduct().getId() == id);
 
-        return "cart";
+        return "redirect:/cart";
     }
 
-    @GetMapping("/placeOrder")
-    public String placeOrder(HttpSession session) {
+    @PostMapping("/placeOrder")
+    public String placeOrder(HttpSession session, @ModelAttribute Order userData, Model model) {
         List<CartItem> cartItems = cartItems();
         List<OrderItem> orderItems = new ArrayList<>();
         Order order = new Order();
+
+        order.setAddress(userData.getAddress());
+        order.setEmail(userData.getEmail());
+        order.setName(userData.getName());
+        order.setPhone(userData.getPhone());
+
+        order.setTotalPrice(totalPrice());
 
         for (CartItem cartItem : cartItems) {
 
@@ -124,8 +135,14 @@ public class HomeController {
 
         session.invalidate();
 
-        return "redirect:/";
+        model.addAttribute("order", order);
+        return "ordered";
     }
 
+    @GetMapping("/order")
+    public String order(Model model) {
+        model.addAttribute("order", new Order());
+        return "place-order";
+    }
 
 }
