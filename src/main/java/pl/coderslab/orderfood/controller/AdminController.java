@@ -1,15 +1,15 @@
 package pl.coderslab.orderfood.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.orderfood.entity.Category;
 import pl.coderslab.orderfood.entity.Item;
 import pl.coderslab.orderfood.repository.CategoryRepository;
 import pl.coderslab.orderfood.repository.ItemRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,9 +34,14 @@ public class AdminController {
     }
 
 
-    @GetMapping("")
+    @GetMapping("/items")
     public String listOfItems() {
         return "/admin/dashboard";
+    }
+
+    @GetMapping("")
+    public String dashboard() {
+        return "redirect:/admin/items";
     }
 
 

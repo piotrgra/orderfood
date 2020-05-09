@@ -46,11 +46,6 @@ public class ItemController {
         return "redirect:/admin/";
     }
 
-    @GetMapping("")
-    public String listOfItems() {
-        return "/admin/item-list";
-    }
-
     @GetMapping("/delete/{id}")
     public String deleteItem(@PathVariable long id) {
         Optional<Item> item = itemRepository.findById(id);

@@ -17,8 +17,8 @@
             <tr>
                 <td>${c.id}</td>
                 <td>${c.name}</td>
-                <td><a href="<c:url value="admin/category/delete/${c.id}"/>">Delete</a></td>
-                <td><a href="<c:url value="admin/category/update/${c.id}"/>">Edit</a></td>
+                <td><a href="<c:url value="delete/${c.id}"/>">Delete</a></td>
+                <td><a href="<c:url value="update/${c.id}"/>">Edit</a></td>
             </tr>
         </c:forEach>
     </table>

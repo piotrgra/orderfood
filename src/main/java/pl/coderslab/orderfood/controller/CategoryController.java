@@ -38,14 +38,14 @@ public class CategoryController {
     @PostMapping("/add")
     public String processForm(@ModelAttribute Category category) {
         categoryRepository.save(category);
-        return "redirect:/admin/category";
+        return "redirect:/admin/category/";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable long id) {
         Optional<Category> category = categoryRepository.findById(id);
         category.ifPresent(categoryRepository::delete);
-        return "redirect:/admin/category";
+        return "redirect:/admin/category/";
     }
 
     @GetMapping("/update/{id}")
