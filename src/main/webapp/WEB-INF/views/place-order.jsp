@@ -5,9 +5,9 @@
 <jsp:include page="header.jsp"/>
 
 <body>
-<div>
+<div class="place-order">
     <h1>Kasa:</h1>
-    <table>
+    <table class="center">
         <tr>
             <th>Produkt:</th>
             <th>Ilość:</th>
@@ -21,10 +21,11 @@
             </tr>
         </c:forEach>
         <tr>
-            <td colspan="3">Łącznie: ${totalPrice}</td>
+            <td colspan="3">Suma: ${totalPrice}</td>
         </tr>
     </table>
-
+    <hr>
+    <h1>Dane dostawy:</h1>
     <form:form method="post" modelAttribute="order" action="/placeOrder">
         <form:label path="name">Name:</form:label>
         <form:input path="name"/>
