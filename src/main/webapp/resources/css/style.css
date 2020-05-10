@@ -15,6 +15,14 @@ table.header {
     align-self: center;
 }
 
+table#items tr td{
+    border: 1px solid black;
+}
+
+table#cart tr td{
+    border: 1px solid black;
+}
+
 #menu {
     min-height: 150px;
     width: 15%;
@@ -36,13 +44,13 @@ table.center {
     width: 30%;
     border: 1px solid black;
 }
+
 #items {
     width: 55%;
     float: left;
     border: 1px solid black;
     align-content: center;
 }
-
 
 #cart {
     width: 50%;

@@ -27,10 +27,10 @@
             <th colspan="5">Potrawy:</th>
         </tr>
         <c:forEach items="${items}" var="i">
-            <tr>
+            <tr class="item-list">
                 <td class="item-img"><img src="<c:url value="/resources/image/menu-img-01.jpg"/>" alt="${i.name}"
-                                          width="200"
-                                          height="150"></td>
+                                          width="100"
+                                          height="80"></td>
                 <td class="item-name">${i.name}</td>
                 <td class="item-description">${i.description}</td>
                 <td class="item-price">${i.price} zł</td>

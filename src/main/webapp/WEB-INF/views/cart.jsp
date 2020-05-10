@@ -6,31 +6,40 @@
 <body>
 <div>
     <h1 id="cartTitle">Koszyk</h1>
-    <table id="cart">
-        <c:if test="${empty cart}">
+    <c:if test="${empty cart}">
+        <h1 id="cartTitle">Koszyk jest pusty</h1>
+    </c:if>
+    <c:if test="${not empty cart}">
+        <table id="cart">
             <tr>
-                <td colspan="6">Czemu masz pusty koszyk ?! :( Zamów coś i daj zarobić! :)</td>
+                <th>Id:</th>
+                <th>Nazwa:</th>
+                <th>Opis:</th>
+                <th>Ilość:</th>
+                <th>Cena:</th>
+                <th>Usuń:</th>
             </tr>
-        </c:if>
-        <c:forEach items="${cart}" var="c" varStatus="loop">
+            <c:forEach items="${cart}" var="c" varStatus="loop">
+                <tr>
+                    <td class="cart-loop">${loop.count}.</td>
+                    <td class="cart-name">${c.product.name}</td>
+                    <td class="cart-description">${c.product.description}</td>
+                    <td class="cart-quantity">${c.quantity} x</td>
+                    <td class="cart-price">(${c.product.price}) ${c.product.price * c.quantity} zł</td>
+                    <td><a href="/removeFromCart/${c.product.id}">X</a></td>
+                </tr>
+            </c:forEach>
             <tr>
-                <td class="cart-loop">${loop.count}. </td>
-                <td class="cart-name">${c.product.name}</td>
-                <td class="cart-description">${c.product.description}</td>
-                <td class="cart-quantity">${c.quantity} x </td>
-                <td class="cart-price">(${c.product.price}) ${c.product.price * c.quantity} zł</td>
-                <td><a href="/removeFromCart/${c.product.id}">X</a></td>
+                <td colspan="6">Suma: ${totalPrice} zł</td>
             </tr>
-        </c:forEach>
-        <tr>
-            <td>Suma: ${totalPrice} zł</td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/order">Zamawiam</a>
-            </td>
-        </tr>
-    </table>
+            <tr>
+                <td colspan="6">
+                    <a href="/order">Zamawiam</a>
+                </td>
+            </tr>
+        </table>
+    </c:if>
+
 </div>
 </body>
 </html>
