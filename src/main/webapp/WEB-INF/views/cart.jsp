@@ -4,7 +4,10 @@
 <jsp:include page="header.jsp"/>
 
 <body>
-<div>
+<div id="container">
+    <div id="contentCart">
+
+<div id="main">
     <h1 id="cartTitle">Koszyk</h1>
     <c:if test="${empty cart}">
         <h1 id="cartTitle">Koszyk jest pusty</h1>
@@ -39,6 +42,10 @@
             </tr>
         </table>
     </c:if>
+</div>
+
+    </div>
+
 
 </div>
 </body>

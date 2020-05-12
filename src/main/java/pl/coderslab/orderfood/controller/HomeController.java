@@ -145,4 +145,8 @@ public class HomeController {
         return "place-order";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "cart2";
+    }
 }

@@ -1,91 +1,266 @@
 body {
-    max-width: 70%;
-    margin: auto;
-    align-self: center;
-    align-content: center;
-}
-#cartTitle {
-    margin-left: 50%;
-    margin-right: 50%;
+    background-color: #EEEEEE;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
-table.header {
-    width: 100%;
-    align-content: center;
-    align-self: center;
+a {
+    text-decoration: none;
+    color: black;
 }
 
-table#items tr td{
-    border: 1px solid black;
+h1, h2, h3 {
+    margin: 0;
 }
 
-table#cart tr td{
-    border: 1px solid black;
+.titleText {
+    margin: 15px 20px 20px 20px;
+    padding-bottom: 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: #3d74a6;
+    border-bottom: 2px solid #e9f1f8;
 }
 
-#menu {
-    min-height: 150px;
-    width: 15%;
+.menuCategory {
+    font-weight: 300;
+    font-size: 1.1em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+
+div.menuCategory:hover {
+    background-color: #D5D5D5;
+}
+
+.menuCategory span {
+    padding-left: 20px;
+}
+
+.menuCategory .categoryCount {
+    font-size: 15px;
+    color: #555;
+    font-style: italic;
+}
+
+#container {
+    background-color: grey;
+    background-image: url("../image/background.jpg");
+    width: 1800px;
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
+}
+
+#header {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 0px 20px 20px;
+}
+
+#header .headerLogo {
+    margin-left: 350px;
+    padding: 0;
+}
+
+#header .headerCart {
+    margin-left: 800px;
+}
+
+#content {
+    padding: 10px;
+}
+
+#row {
+    width: 350px;
     float: left;
-    border: 1px solid black;
-    margin-left: 10%;
+    margin-left: 15%;
 }
 
-.place-order
-{
+#row ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.restaurantCart {
+    align-items: center;
     align-content: center;
+    width: 80%;
+    background: whitesmoke;
+    border-radius: 20px 20px 20px 20px;
+}
+
+#restaurantInfo {
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+}
+
+#restaurantInfo .logo {
+    max-width: 100px;
+    padding: 0 40px 0px 40px;
+}
+
+#restaurantInfo .restaurantContact {
+    font-size: 15px;
+    color: #555;
+    font-style: italic;
+}
+
+
+#nav {
+    width: 80%;
+    background: whitesmoke;
+    margin-top: 30px;
+    border-radius: 20px 20px 20px 20px;
+    padding-top: 5px;
+}
+
+#main {
+    background: whitesmoke;
+    width: 700px;
+    min-height: 700px;
+    float: left;
+    margin-left: 20px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.mealInfoWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: whitesmoke;
+    width: 90%;
+    padding: 5px 20px 5px 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    border-bottom: 1px solid #e9f1f8;
+}
+
+.mealInfoWrapper:hover {
+    color: #3d74a6;
+}
+
+.mealInfoWrapper:hover > .mealItemImg {
+    transform: scale(1.2);
+}
+
+.mealItemImg {
+    flex: auto;
+    position: relative;
+    margin-right: 30px;
+    min-height: 100px;
+    min-width: 100px;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.mealTitle {
+    display: block;
+    font-size: 18px;
+    line-height: 1.11;
+    font-weight: 700;
+    text-align: left;
+    margin-right: 20px;
+    margin-bottom: 4px;
+}
+
+.mealDescription {
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+}
+
+.mealItemPrice {
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.mealItemCart {
+    margin-left: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+<!--
+CSS do koszyka
+
+-->
+
+#contentCart {
+    margin-top: 100px;
+    width: 500px;
+    height: 500px;
     text-align: center;
-
-}
-
-table.center {
-    margin-left: 35%;
-    margin-right: 50%;
-    width: 30%;
-    border: 1px solid black;
-}
-
-#items {
-    width: 55%;
-    float: left;
-    border: 1px solid black;
-    align-content: center;
+    padding: 10px;
 }
 
 #cart {
-    width: 50%;
-    margin-left:auto;
-    margin-right:auto;
-    border: 1px solid black;
-    align-content: center;
+    text-align: center;
+    background: whitesmoke;
+    width: 700px;
+    min-height: 200px;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding-top: 10px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+#cartItems, tr, td{
+    text-align: center;
 }
 
 
-/* CSS for table items in frontpage */
-td.item-img {
-    max-width: 20%;
+#cart .titleText {
+    text-align: center;
 }
 
-td.item-name {
-    width: 20%;
-    align-content: center;
+.cartWrapper {
+    display: block;
+    font-size: 17px;
+    font-weight: 400;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+.itemWrapper {
+    display: block;
+    width: auto;
+    padding: 10px;
+
 }
 
-td.item-description {
-    width: 30%;
-    align-content: center;
+
+.orderButton {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
-
-td.item-price {
-    width: 20%;
-    align-content: center;
-}
-
-td.item-cart {
-    width: 10%;
-    align-content: center;
-}
-
-/* CSS for table items in frontpage */
-
-
