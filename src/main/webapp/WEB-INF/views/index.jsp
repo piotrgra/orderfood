@@ -1,71 +1,85 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Food APP</title>
-    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" type="text/css">
-</head>
-<body>
 <jsp:include page="header.jsp"/>
-<div id="container">
-    <div id="content">
-        <div id="row">
-            <div class="restaurantCart">
-                <div id="restaurantInfo">
-                    <img src="<c:url value="/resources/image/logo.png"/>" class="logo">
-                    <h2><span class="title">App Food :)</span></h2>
-                    <div class="restaurantContact">
-                        <div id="phone">Tel: 504234234</div>
-                        <div id="address">ul. Jankowska 54, 73-232 Poznan</div>
-                    </div>
-                    <div id="status">Otwarte</div>
-                    <div id="hours">10:00 - 20:00</div>
-                </div>
-            </div>
-            <div id="nav">
-                <div class="titleText">Menu</div>
+<body>
+<!-- Page Content -->
+<div class="container">
 
+    <div class="row">
+
+        <div class="col-lg-3">
+            <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App"></a>
+            <h1 class="my-4">Food App</h1>
+            <div class="list-group">
                 <c:forEach items="${categories}" var="c">
                     <c:if test="${c.items.size() != 0}">
-                        <a href="#">
-                            <div class="menuCategory">
-
-                                <span>${c.name} </span>
-                                <span class="categoryCount">${c.items.size()}</span>
-
-                            </div>
+                        <a href="#" class="list-group-item">
+                                ${c.name} <small class="text-muted"> ${c.items.size()}</small>
                         </a>
                     </c:if>
                 </c:forEach>
+            </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+            <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+
+                <!-- zostawione aby była przerwa miedzy menu a produktami-->
+            </div>
+
+
+            <div class="row">
+                <c:forEach items="${items}" var="i">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <img class="card-img-top"
+                                 src="<c:url value="/resources/image/menu-img-01.jpg" />"
+                                 alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">${i.name}</a>
+                                </h4>
+                                <h5>${i.price}</h5>
+                                <p class="card-text">${i.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="<c:url value="/addToCart/${i.id}/1"/>">
+                                    <button type="button" class="btn btn-success">Dodaj do koszyka</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
 
             </div>
-        </div>
-        <div id="main">
-            <div class="titleText">Polecamy</div>
-
-            <c:forEach items="${items}" var="i">
-                <div class="mealInfoWrapper">
-                    <div class="mealItemImg"><img src="<c:url value="/resources/image/menu-img-01.jpg"/>"
-                                                  alt="${i.name}"
-                                                  width="100"
-                                                  height="100"></div>
-                    <div class="mealItemInfo">
-                        <span class="mealTitle">${i.name}</span>
-                        <span class="mealDescription">${i.description}</span>
-                    </div>
-                    <div class="mealItemPrice">${i.price} zł</div>
-                    <div class="mealItemCart">
-                        <a href="<c:url value="/addToCart/${i.id}/1"/>"><img
-                                src="<c:url value="/resources/image/cart.jpg"/>" width="30"
-                                height="30"></a>
-                    </div>
-                </div>
-            </c:forEach>
+            <!-- /.row -->
 
         </div>
+        <!-- /.col-lg-9 -->
+
     </div>
+    <!-- /.row -->
 
 </div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="<c:url value="/resources/bootstrap/vendor/jquery/jquery.min.js" />"></script>
+<script src="<c:url value="/resources/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+
 </body>
+
 </html>

@@ -1,52 +1,76 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <jsp:include page="header.jsp"/>
 
 <body>
-<div id="container">
-    <div id="contentCart">
 
-<div id="main">
-    <h1 id="cartTitle">Koszyk</h1>
-    <c:if test="${empty cart}">
-        <h1 id="cartTitle">Koszyk jest pusty</h1>
-    </c:if>
-    <c:if test="${not empty cart}">
-        <table id="cart">
-            <tr>
-                <th>Id:</th>
-                <th>Nazwa:</th>
-                <th>Opis:</th>
-                <th>Ilość:</th>
-                <th>Cena:</th>
-                <th>Usuń:</th>
-            </tr>
-            <c:forEach items="${cart}" var="c" varStatus="loop">
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Koszyk:</h1>
+
+            <table class="table">
+                <thead>
                 <tr>
-                    <td class="cart-loop">${loop.count}.</td>
-                    <td class="cart-name">${c.product.name}</td>
-                    <td class="cart-description">${c.product.description}</td>
-                    <td class="cart-quantity">${c.quantity} x</td>
-                    <td class="cart-price">(${c.product.price}) ${c.product.price * c.quantity} zł</td>
-                    <td><a href="/removeFromCart/${c.product.id}">X</a></td>
+                    <th scope="col">#</th>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Ilość</th>
+                    <th scope="col">Cena</th>
+                    <th scope="col">Usuń</th>
                 </tr>
-            </c:forEach>
-            <tr>
-                <td colspan="6">Suma: ${totalPrice} zł</td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <a href="/order">Zamawiam</a>
-                </td>
-            </tr>
-        </table>
-    </c:if>
-</div>
+                </thead>
+                <tbody>
+                <c:forEach items="${cart}" var="c" varStatus="loop">
+                    <tr>
+                        <th scope="row">${loop.count}</th>
+                        <td>${c.product.name}</td>
+                        <td>${c.quantity}</td>
+                        <td>${c.product.price * c.quantity}</td>
+                        <td>
+                            <a href="<c:url value="/removeFromCart/${c.product.id}" />">Usuń</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+
+                <tr>
+                    <td colspan="5">Suma: ${totalPrice}</td>
+                </tr>
+
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <a href="<c:url value="/order"/>" class="btn btn-success">Zamawiam </a>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
 
     </div>
-
+    <!-- /.row -->
 
 </div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

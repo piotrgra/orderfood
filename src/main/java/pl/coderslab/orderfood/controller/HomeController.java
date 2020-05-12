@@ -105,7 +105,7 @@ public class HomeController {
         return "redirect:/cart";
     }
 
-    @PostMapping("/placeOrder")
+    @PostMapping("/checkout")
     public String placeOrder(HttpSession session, @ModelAttribute Order userData, Model model) {
         List<CartItem> cartItems = cartItems();
         List<OrderItem> orderItems = new ArrayList<>();
@@ -113,7 +113,7 @@ public class HomeController {
 
         order.setAddress(userData.getAddress());
         order.setEmail(userData.getEmail());
-        order.setName(userData.getName());
+        order.setFirstName(userData.getFirstName());
         order.setPhone(userData.getPhone());
 
         order.setTotalPrice(totalPrice());
@@ -142,11 +142,6 @@ public class HomeController {
     @GetMapping("/order")
     public String order(Model model) {
         model.addAttribute("order", new Order());
-        return "place-order";
-    }
-
-    @GetMapping("/test")
-    public String test(){
-        return "cart2";
+        return "checkout";
     }
 }
