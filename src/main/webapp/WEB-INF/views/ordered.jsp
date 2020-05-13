@@ -11,11 +11,12 @@
 
 
         <div class="col-lg-10 text-center">
-            <h1 class="mt-5">Twoje zamowienie zostało zrealizowane numer zamowienia to: ${order.id}</h1>
+            <h1 class="mt-5">Twoje zamowienie zostało przyjete!</h1>
+            <h2>Numer zamowienia to: ${order.id}</h2>
 
             <h2 class="mt-5">Twoje zamowienie bedzie gotowe za XXX</h2>
 
-            <table class="table">
+            <table class="table text-center">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
