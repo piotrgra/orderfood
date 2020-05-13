@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
-import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "items")

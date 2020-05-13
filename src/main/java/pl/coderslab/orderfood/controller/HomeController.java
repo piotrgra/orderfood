@@ -133,7 +133,7 @@ public class HomeController {
         order.setOrderItems(orderItems);
         orderRepository.save(order);
 
-        session.invalidate();
+        cartItems.clear();
 
         model.addAttribute("order", order);
         return "ordered";
@@ -144,4 +144,10 @@ public class HomeController {
         model.addAttribute("order", new Order());
         return "checkout";
     }
+    @GetMapping("/test")
+    public String test() {
+
+        return "admin2/index";
+    }
+
 }

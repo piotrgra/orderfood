@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="header.jsp"/>
+
 <body>
 <!-- Page Content -->
 <div class="container">
