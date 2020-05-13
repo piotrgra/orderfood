@@ -1,11 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-    <title>Cos poszlo nie tak</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+<jsp:include page="header.jsp"/>
 <body>
-Cos poszlo nie tak :/ <br/>
-${message}
+<!-- Page Content -->
+<div class="container">
+
+    <div class="text-center" style="padding-top: 20px">
+        <div class="error mx-auto" data-text="404">404</div>
+        <p class="lead text-gray-800 mb-5">Strona nie została znaleziona</p>
+        <p class="text-gray-500 mb-0">Wyglada na to ze znalazles bląd...</p>
+        <a href="<c:url value="/"/>">&larr; Wróc do strony głównej</a>
+    </div>
+</div>
+
+<jsp:include page="footer.jsp"/>
+
 </body>
+
 </html>
