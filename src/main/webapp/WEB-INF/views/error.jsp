@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 <body>
 <!-- Page Content -->
 <div class="container">
@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="includes/footer.jsp"/>
 
 </body>
 

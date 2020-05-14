@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="header.jsp"/>
+<jsp:include page="includes/header.jsp"/>
 
 <body>
 
@@ -138,7 +138,7 @@
 </div>
 <!-- /.container -->
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="includes/footer.jsp"/>
 
 </body>
 
