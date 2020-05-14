@@ -17,7 +17,6 @@ import pl.coderslab.orderfood.repository.ItemRepository;
 import pl.coderslab.orderfood.repository.OrderItemRepository;
 import pl.coderslab.orderfood.repository.OrderRepository;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,16 +105,21 @@ public class HomeController {
     }
 
     @PostMapping("/checkout")
-    public String placeOrder(HttpSession session, @ModelAttribute Order userData, Model model) {
+    public String placeOrder(@ModelAttribute Order userData, Model model) {
         List<CartItem> cartItems = cartItems();
         List<OrderItem> orderItems = new ArrayList<>();
         Order order = new Order();
 
-        order.setAddress(userData.getAddress());
-        order.setEmail(userData.getEmail());
+        order.setStatus("NOWE");
         order.setFirstName(userData.getFirstName());
+        order.setLastName(userData.getLastName());
+        order.setAddress(userData.getAddress());
+        order.setZip(userData.getZip());
+        order.setEmail(userData.getEmail());
+        order.setDeliveryMethod(userData.getDeliveryMethod());
+        order.setPaymentMethod(userData.getPaymentMethod());
         order.setPhone(userData.getPhone());
-
+        order.setCity(userData.getCity());
         order.setTotalPrice(totalPrice());
 
         for (CartItem cartItem : cartItems) {
@@ -144,6 +148,7 @@ public class HomeController {
         model.addAttribute("order", new Order());
         return "checkout";
     }
+
     @GetMapping("/test")
     public String test() {
 

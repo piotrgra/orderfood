@@ -1,8 +1,6 @@
 package pl.coderslab.orderfood.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -19,9 +17,6 @@ public class Item {
     @NotEmpty
     private String description;
 
-    @DecimalMax("1000")
-    @DecimalMin("0.01")
-    @Column(precision = 2)
     private double price;
 
     private String image;

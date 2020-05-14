@@ -32,7 +32,9 @@
                         <td>${c.quantity}</td>
                         <td>${c.product.price * c.quantity}</td>
                         <td>
-                            <a href="<c:url value="/removeFromCart/${c.product.id}" />">Usuń</a>
+                            <a href="<c:url value="/removeFromCart/${c.product.id}"/>" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                 </c:forEach>

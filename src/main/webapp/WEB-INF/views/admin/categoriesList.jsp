@@ -32,10 +32,13 @@
                         <td>
                             <a href="<c:url value="category/delete/${c.id}"/>" class="btn btn-danger btn-circle btn-sm">
                                 <i class="fas fa-trash"></i>
-                            </a></td>
-                        <td><a href="<c:url value="category/update/${c.id}"/>" class="btn btn-warning btn-circle btn-sm">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </a></td>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<c:url value="category/update/${c.id}"/>" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
