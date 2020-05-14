@@ -13,18 +13,35 @@
 
     <div class="d-flex p-2">
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Dodaj kategorie</h4>
-            <form:form method="post" modelAttribute="category" action="/admin/category/add">
+            <h4 class="mb-3">Dodaj przedmiot</h4>
+            <form:form method="post" modelAttribute="item" action="/admin/item/add">
                 <div class="mb-3">
                     <form:label path="name">Name:</form:label>
                     <form:input path="name"/>
                     <form:errors path="name" cssClass="errorMessage"/><br/>
                 </div>
+                <div class="mb-3">
+                    <form:label path="description">Description:</form:label>
+                    <form:input path="description"/>
+                    <form:errors path="description" cssClass="errorMessage"/><br/>
+                </div>
+                <div class="mb-3">
+                    <form:label path="price">Price:</form:label>
+                    <form:input path="price"/>
+                    <form:errors path="price" cssClass="errorMessage"/><br/>
+                </div>
+                <div class="mb-3">
+                    <form:select path="category" items="${categories}" itemLabel="name" itemValue="id"/>
+                    <form:errors path="category" cssClass="errorMessage"/>
+                </div>
+
 
                 <form:hidden path="id"/>
 
-                <form:button class="btn btn-primary btn-lg btn-block" type="submit">Dodaj kategorie</form:button>
+                <form:button class="btn btn-primary btn-lg btn-block" type="submit">Dodaj produkt</form:button>
             </form:form>
+
+
         </div>
         <!-- /.row -->
 

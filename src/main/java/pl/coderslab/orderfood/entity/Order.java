@@ -1,6 +1,7 @@
 package pl.coderslab.orderfood.entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    private String status;
 
     @OneToMany
     private List<OrderItem> orderItems;
@@ -23,6 +26,8 @@ public class Order {
     private String zip;
 
     private String city;
+
+    private LocalDateTime date;
 
     private String deliveryMethod;
 
@@ -39,6 +44,15 @@ public class Order {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    @PrePersist
+    public void setDate() {
+        this.date = LocalDateTime.now();
     }
 
     public void setFirstName(String firstName) {
@@ -59,6 +73,14 @@ public class Order {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getCity() {

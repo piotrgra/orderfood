@@ -60,7 +60,7 @@
 
                     </div>
                     <div class="col-md-6 mb-3">
-                        <form:label path="lastName">Naziwsko</form:label>
+                        <form:label path="lastName">Nazwisko</form:label>
                         <form:input path="lastName" class="form-control"/>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <form:button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</form:button>
+                <form:button class="btn btn-primary btn-lg btn-block" type="submit">Zamawiam</form:button>
             </form:form>
         </div>
     </div>

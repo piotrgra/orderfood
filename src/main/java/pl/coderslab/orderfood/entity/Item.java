@@ -24,7 +24,6 @@ public class Item {
     @Column(precision = 2)
     private double price;
 
-    @NotEmpty
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY)

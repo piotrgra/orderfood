@@ -9,7 +9,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/admin/" />">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -21,7 +21,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<c:url value="/admin/" />">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -36,7 +36,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<c:url value="/admin/orders" />">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Zamówienia</span></a>
     </li>
@@ -50,8 +50,8 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Potrawy:</h6>
-                <a class="collapse-item" href="#">Lista potraw</a>
-                <a class="collapse-item" href="#">Dodaj potrawe</a>
+                <a class="collapse-item" href="<c:url value="/admin/items" />">Lista potraw</a>
+                <a class="collapse-item" href="<c:url value="/admin/item/add" />">Dodaj potrawe</a>
             </div>
         </div>
     </li>
@@ -66,8 +66,8 @@
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Kategorie</h6>
-                <a class="collapse-item" href="#">Lista kategorii</a>
-                <a class="collapse-item" href="#">Dodaj kategorie</a>
+                <a class="collapse-item" href="<c:url value="/admin/categories" />">Lista kategorii</a>
+                <a class="collapse-item" href="<c:url value="/admin/category/add" />">Dodaj kategorie</a>
             </div>
         </div>
     </li>

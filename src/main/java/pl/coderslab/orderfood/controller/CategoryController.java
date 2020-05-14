@@ -24,11 +24,6 @@ public class CategoryController {
         return categoryRepository.findAll();
     }
 
-    @GetMapping("")
-    public String category() {
-        return "admin/category-list";
-    }
-
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("category", new Category());
@@ -38,14 +33,14 @@ public class CategoryController {
     @PostMapping("/add")
     public String processForm(@ModelAttribute Category category) {
         categoryRepository.save(category);
-        return "redirect:/admin/category/";
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable long id) {
         Optional<Category> category = categoryRepository.findById(id);
         category.ifPresent(categoryRepository::delete);
-        return "redirect:/admin/category/";
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("/update/{id}")

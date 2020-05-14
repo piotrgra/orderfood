@@ -35,29 +35,28 @@ public class ItemController {
 
     @GetMapping("/add")
     public String addNewItem(Model model) {
-
         model.addAttribute("item", new Item());
-        return "admin/product-form";
+        return "admin/item-form";
     }
 
     @PostMapping("/add")
     public String addNewItemForm(@ModelAttribute Item item) {
         itemRepository.save(item);
-        return "redirect:/admin/";
+        return "redirect:/admin/items";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteItem(@PathVariable long id) {
         Optional<Item> item = itemRepository.findById(id);
         item.ifPresent(itemRepository::delete);
-        return "redirect:/admin/";
+        return "redirect:/admin/items";
     }
 
     @GetMapping("/update/{id}")
     public String updateItem(@PathVariable long id, Model model) {
         Optional<Item> item = itemRepository.findById(id);
         item.ifPresent(value -> model.addAttribute("item", value));
-        return "admin/product-form";
+        return "admin/item-form";
     }
 
 
