@@ -12,33 +12,33 @@
 
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h5 class="m-0 font-weight-bold text-primary">Lista kategorii</h5>
+
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h5 class="m-0 font-weight-bold text-primary">Lista rodzajów płatności</h5>
+
+                <a href="<c:url value="/admin/paymentMethod/add"/>" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">Dodaj nowy rodzaj płatności</span>
+                </a>
             </div>
+
             <div class="card-body">
                 <div class="col-lg-12 text-center">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Nazwa</th>
-                            <th scope="col">Usuń</th>
-                            <th scope="col">Edytuj</th>
+                            <th scope="col">Akcja</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${categories}" var="c" varStatus="loop">
+                        <c:forEach items="${paymentsMethod}" var="c" varStatus="loop">
                             <tr>
-                                <th scope="row">${c.id}</th>
                                 <td>${c.name}</td>
                                 <td>
-                                    <a href="<c:url value="category/delete/${c.id}"/>"
-                                       class="btn btn-danger btn-circle btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="<c:url value="category/update/${c.id}"/>"
+                                    <a href="<c:url value="paymentMethod/update/${c.id}"/>"
                                        class="btn btn-warning btn-circle btn-sm">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </a>

@@ -10,55 +10,56 @@
 <div id="wrapper">
     <jsp:include page="includes/navbars.jsp"/>
 
-    <div class="row">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-primary">Zamówienia</h5>
+            </div>
+            <div class="card-body">
+                <div class="col-lg-12 text-center">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Klient</th>
+                            <th scope="col">Dostawa</th>
+                            <th scope="col">Wartość</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Akcja</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${orders}" var="o" varStatus="loop">
+                            <tr>
+                                <th scope="row">${o.id}</th>
+                                <td>${o.status}</td>
+                                <td>${o.firstName} ${o.lastName}</td>
+                                <td>${o.deliveryMethod}</td>
+                                <td>${o.totalPrice}</td>
+                                <td>${o.date}</td>
+                                <td>Akcja</td>
+                            </tr>
+                        </c:forEach>
 
-        <div class="col-lg-12 text-center">
-            <h1 class="mt-5">Zamówienia:</h1>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Klient</th>
-                    <th scope="col">Dostawa</th>
-                    <th scope="col">Wartość</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Akcja</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${orders}" var="o" varStatus="loop">
-                    <tr>
-                        <th scope="row">${o.id}</th>
-                        <td>${o.status}</td>
-                        <td>${o.firstName} ${o.lastName}</td>
-                        <td>${o.deliveryMethod}</td>
-                        <td>${o.totalPrice}</td>
-                        <td>${o.date}</td>
-                        <td>Akcja</td>
-                    </tr>
-                </c:forEach>
+                        </tbody>
 
-
-                </tbody>
-
-            </table>
+                    </table>
+                </div>
+            </div>
         </div>
+
 
     </div>
     <!-- /.row -->
 
 </div>
-<!-- End of Main Content -->
+<!-- End of Page Wrapper -->
 
 <jsp:include page="includes/footer.jsp"/>
 
-</div>
-<!-- End of Content Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
 <jsp:include page="includes/js.jsp"/>
 </body>
 

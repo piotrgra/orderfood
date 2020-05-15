@@ -34,7 +34,6 @@
         Menu
     </div>
 
-    <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="<c:url value="/admin/orders" />">
             <i class="fas fa-fw fa-chart-area"></i>
@@ -43,7 +42,8 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+           aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Potrawy</span>
         </a>
@@ -59,7 +59,8 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
+           aria-controls="collapsePages2">
             <i class="fas fa-fw fa-folder"></i>
             <span>Kategorie</span>
         </a>
@@ -70,6 +71,18 @@
                 <a class="collapse-item" href="<c:url value="/admin/category/add" />">Dodaj kategorie</a>
             </div>
         </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="<c:url value="/admin/paymentsMethod" />">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Typy płatności</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="<c:url value="/admin/deliveriesMethod" />">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Rodzaje dostawy</span></a>
     </li>
 
     <!-- Divider -->
@@ -104,12 +117,14 @@
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
                         <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                     </a>
                     <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
