@@ -3,8 +3,8 @@ package pl.coderslab.orderfood.controller;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.orderfood.entity.Order;
 import pl.coderslab.orderfood.repository.*;
 
 @Controller
@@ -33,7 +33,7 @@ public class AdminController {
     @GetMapping("/orders")
     public String orders(Model model) {
         model.addAttribute("orders", orderRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
-        return "admin/orders";
+        return "admin/ordersList";
     }
 
     @GetMapping("/items")
@@ -58,6 +58,24 @@ public class AdminController {
     public String deliveriesMethod(Model model) {
         model.addAttribute("deliveriesMethod", deliveryMethodRepository.findAll());
         return "admin/deliveryList";
+    }
+
+    @GetMapping("/orderEdit")
+    public String editOrder(@RequestParam long orderId, Model model) {
+        Order order = orderRepository.findById(orderId).get();
+        model.addAttribute("order", order);
+        return "admin/order";
+    }
+
+    @PostMapping("/orderEdit")
+    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId) {
+
+        Order oldOrder = orderRepository.findById(orderId).get();
+        oldOrder.setStatus(order.getStatus());
+        orderRepository.save(oldOrder);
+
+        System.out.println(order.getOrderReady());
+        return "redirect:/admin/orderEdit?orderId="+orderId;
     }
 
 

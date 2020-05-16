@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 
 <jsp:include page="includes/header.jsp"/>
@@ -32,13 +33,13 @@
                         <tbody>
                         <c:forEach items="${orders}" var="o" varStatus="loop">
                             <tr>
-                                <th scope="row">${o.id}</th>
+                                <th scope="row"><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>"># ${o.id}</a></th>
                                 <td>${o.status}</td>
                                 <td>${o.firstName} ${o.lastName}</td>
                                 <td>${o.deliveryMethod}</td>
-                                <td>${o.totalPrice}</td>
+                                <td><fmt:formatNumber value = "${o.totalPrice}" type = "currency"/></td>
                                 <td>${o.date}</td>
-                                <td>Akcja</td>
+                                <td><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>">Akcja</a></td>
                             </tr>
                         </c:forEach>
 

@@ -29,6 +29,8 @@ public class Order {
 
     private LocalDateTime date;
 
+    private LocalDateTime orderReady;
+
     private String deliveryMethod;
 
     private String paymentMethod;
@@ -153,5 +155,17 @@ public class Order {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public LocalDateTime getOrderReady() {
+        return orderReady;
+    }
+
+    public void setOrderReady(LocalDateTime orderReady) {
+        this.orderReady = orderReady;
     }
 }
