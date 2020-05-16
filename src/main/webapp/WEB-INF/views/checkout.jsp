@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="includes/header.jsp"/>
@@ -31,12 +32,12 @@
                             <h6 class="my-0">${c.product.name}</h6>
                             <small class="text-muted">Ilość: ${c.quantity}</small>
                         </div>
-                        <span class="text-muted">${c.product.price * c.quantity} zł</span>
+                        <span class="text-muted"> <fmt:formatNumber value = "${c.product.price * c.quantity}" type = "currency"/></span>
                     </li>
                 </c:forEach>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Łącznie (PLN)</span>
-                    <strong>${totalPrice} zł</strong>
+                    <strong><fmt:formatNumber value = "${totalPrice}" type = "currency"/></strong>
                 </li>
             </ul>
 

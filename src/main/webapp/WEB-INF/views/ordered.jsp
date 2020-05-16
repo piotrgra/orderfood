@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="includes/header.jsp"/>
@@ -8,8 +9,6 @@
 <div class="container">
 
     <div class="row">
-
-
         <div class="col-lg-10 text-center">
             <h1 class="mt-5">Twoje zamowienie zostało przyjete!</h1>
             <h2>Numer zamowienia to: ${order.id}</h2>
@@ -31,13 +30,11 @@
                         <th scope="row">${loop.count}</th>
                         <td>${c.item.name}</td>
                         <td>${c.quantity}</td>
-                        <td>${c.item.price * c.quantity}</td>
+                        <td><fmt:formatNumber value="${c.item.price * c.quantity}" type="currency"/></td>
                     </tr>
                 </c:forEach>
-
-
                 <tr>
-                    <td colspan="5">Suma: ${order.totalPrice}</td>
+                    <td colspan="5">Suma: <fmt:formatNumber value="${order.totalPrice}" type="currency"/></td>
                 </tr>
 
                 </tbody>

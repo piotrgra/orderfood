@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="includes/header.jsp"/>
@@ -30,7 +31,7 @@
                         <th scope="row">${loop.count}</th>
                         <td>${c.product.name}</td>
                         <td>${c.quantity}</td>
-                        <td>${c.product.price * c.quantity}</td>
+                        <td><fmt:formatNumber value = "${c.product.price * c.quantity}" type = "currency"/></td>
                         <td>
                             <a href="<c:url value="/removeFromCart/${c.product.id}"/>" class="btn btn-danger btn-circle btn-sm">
                                 <i class="fas fa-trash"></i>
@@ -41,7 +42,7 @@
 
 
                 <tr>
-                    <td colspan="5">Suma: ${totalPrice}</td>
+                    <td colspan="5">Suma: <fmt:formatNumber value = "${totalPrice}" type = "currency"/></td>
                 </tr>
 
                 </tbody>

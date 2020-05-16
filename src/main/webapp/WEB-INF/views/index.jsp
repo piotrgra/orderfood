@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="includes/header.jsp"/>
@@ -43,7 +44,7 @@
                                 <h4 class="card-title">
                                     <a href="#">${i.name}</a>
                                 </h4>
-                                <h5>${i.price}</h5>
+                                <h5> <fmt:formatNumber value = "${i.price}" type = "currency"/></h5>
                                 <p class="card-text">${i.description}</p>
                             </div>
                             <div class="card-footer">
