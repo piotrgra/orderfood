@@ -16,7 +16,7 @@
             <div class="list-group">
                 <c:forEach items="${categories}" var="c">
                     <c:if test="${c.items.size() != 0}">
-                        <a href="#" class="list-group-item">
+                        <a href="<c:url value="/menu?categoryId=${c.id}" />" class="list-group-item">
                                 ${c.name} <small class="text-muted"> ${c.items.size()}</small>
                         </a>
                     </c:if>
@@ -24,8 +24,6 @@
             </div>
 
         </div>
-        <!-- /.col-lg-3 -->
-
         <div class="col-lg-9">
 
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -49,7 +47,7 @@
                                 <p class="card-text">${i.description}</p>
                             </div>
                             <div class="card-footer">
-                                <a href="<c:url value="/addToCart/${i.id}/1"/>">
+                                <a href="<c:url value="/addToCart?id=${i.id}&&quantity=1"/>">
                                     <button type="button" class="btn btn-success">Dodaj do koszyka</button>
                                 </a>
                             </div>

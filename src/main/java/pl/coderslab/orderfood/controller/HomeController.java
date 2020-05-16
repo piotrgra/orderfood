@@ -2,10 +2,7 @@ package pl.coderslab.orderfood.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
 import pl.coderslab.orderfood.entity.Category;
@@ -68,15 +65,16 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/menu/{id}")
-    public String homeMenu(@PathVariable long id, Model model) {
-        List<Item> items = itemRepository.findAllByCategoryId(id);
+    @GetMapping("/menu")
+    public String homeMenu(@RequestParam long categoryId, Model model) {
+
+        List<Item> items = itemRepository.findAllByCategoryId(categoryId);
         model.addAttribute("items", items);
         return "index";
     }
 
-    @GetMapping("addToCart/{id}/{quantity}")
-    public String addToCart(@PathVariable long id, @PathVariable int quantity, Model model) {
+    @GetMapping("/addToCart")
+    public String addToCart(@RequestParam long id, @RequestParam int quantity, Model model) {
         Item item = itemRepository.findById(id).get();
         List<CartItem> cartItems = cart.getCartItems();
 
