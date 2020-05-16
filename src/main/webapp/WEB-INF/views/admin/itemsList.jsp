@@ -12,8 +12,15 @@
 
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h5 class="m-0 font-weight-bold text-primary">Lista przedmiotów</h5>
+                <a href="<c:url value="/admin/item/add"/>" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">Dodaj nowy przedmiot</span>
+                </a>
+
             </div>
             <div class="card-body">
                 <div class="col-lg-12 text-center">

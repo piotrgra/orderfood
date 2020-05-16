@@ -40,37 +40,17 @@
             <span>Zamówienia</span></a>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-           aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Potrawy</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Potrawy:</h6>
-                <a class="collapse-item" href="<c:url value="/admin/items" />">Lista potraw</a>
-                <a class="collapse-item" href="<c:url value="/admin/item/add" />">Dodaj potrawe</a>
-            </div>
-        </div>
+        <a class="nav-link" href="<c:url value="/admin/items" />">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Potrawy</span></a>
     </li>
 
 
-    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
-           aria-controls="collapsePages2">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Kategorie</span>
-        </a>
-        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Kategorie</h6>
-                <a class="collapse-item" href="<c:url value="/admin/categories" />">Lista kategorii</a>
-                <a class="collapse-item" href="<c:url value="/admin/category/add" />">Dodaj kategorie</a>
-            </div>
-        </div>
+        <a class="nav-link" href="<c:url value="/admin/categories" />">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Kategorie</span></a>
     </li>
 
     <li class="nav-item">
