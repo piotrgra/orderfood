@@ -5,14 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
-import pl.coderslab.orderfood.entity.Category;
-import pl.coderslab.orderfood.entity.Item;
-import pl.coderslab.orderfood.entity.Order;
-import pl.coderslab.orderfood.entity.OrderItem;
-import pl.coderslab.orderfood.repository.CategoryRepository;
-import pl.coderslab.orderfood.repository.ItemRepository;
-import pl.coderslab.orderfood.repository.OrderItemRepository;
-import pl.coderslab.orderfood.repository.OrderRepository;
+import pl.coderslab.orderfood.entity.*;
+import pl.coderslab.orderfood.repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +18,15 @@ public class HomeController {
     private final Cart cart;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
+    private final StatusRepository statusRepository;
 
-    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository) {
+    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.cart = cart;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
+        this.statusRepository = statusRepository;
     }
 
     @ModelAttribute("categories")
@@ -108,7 +104,7 @@ public class HomeController {
         List<OrderItem> orderItems = new ArrayList<>();
         Order order = new Order();
 
-        order.setStatus("NOWE");
+        order.setStatus(setStatus(1));
         order.setFirstName(userData.getFirstName());
         order.setLastName(userData.getLastName());
         order.setAddress(userData.getAddress());
@@ -151,6 +147,10 @@ public class HomeController {
     public String test() {
 
         return "admin2/index";
+    }
+
+    public Status setStatus(long id) {
+        return statusRepository.findById(id).get();
     }
 
 }

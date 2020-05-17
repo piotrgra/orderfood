@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.entity.Order;
+import pl.coderslab.orderfood.entity.Status;
 import pl.coderslab.orderfood.repository.*;
 
 @Controller
@@ -16,13 +17,32 @@ public class AdminController {
     private final OrderRepository orderRepository;
     private final DeliveryMethodRepository deliveryMethodRepository;
     private final PaymentMethodRepository paymentMethodRepository;
+    private final StatusRepository statusRepository;
 
-    public AdminController(ItemRepository itemRepository, CategoryRepository categoryRepository, OrderRepository orderRepository, DeliveryMethodRepository deliveryMethodRepository, PaymentMethodRepository paymentMethodRepository) {
+    public AdminController(ItemRepository itemRepository, CategoryRepository categoryRepository, OrderRepository orderRepository, DeliveryMethodRepository deliveryMethodRepository, PaymentMethodRepository paymentMethodRepository, StatusRepository statusRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
         this.deliveryMethodRepository = deliveryMethodRepository;
         this.paymentMethodRepository = paymentMethodRepository;
+        this.statusRepository = statusRepository;
+    }
+
+    // W readMe napisać o uruchmieniu tego!
+    @GetMapping("/createStatus")
+    public String createStatus() {
+        Status status1 = new Status();
+        status1.setName("NOWE");
+        Status status2 = new Status();
+        status2.setName("W REALIZACJI");
+        Status status3 = new Status();
+        status3.setName("ANULOWANE");
+
+        statusRepository.save(status1);
+        statusRepository.save(status2);
+        statusRepository.save(status3);
+
+        return "admin/index";
     }
 
     @GetMapping("")
@@ -64,18 +84,18 @@ public class AdminController {
     public String editOrder(@RequestParam long orderId, Model model) {
         Order order = orderRepository.findById(orderId).get();
         model.addAttribute("order", order);
+        model.addAttribute("status", statusRepository.findAll());
         return "admin/order";
     }
 
     @PostMapping("/orderEdit")
-    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId) {
+    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId, @ModelAttribute Status status) {
 
         Order oldOrder = orderRepository.findById(orderId).get();
-        oldOrder.setStatus(order.getStatus());
+        oldOrder.setStatus(status);
         orderRepository.save(oldOrder);
-
-        System.out.println(order.getOrderReady());
-        return "redirect:/admin/orderEdit?orderId="+orderId;
+        
+        return "redirect:/admin/orderEdit?orderId=" + orderId;
     }
 
 

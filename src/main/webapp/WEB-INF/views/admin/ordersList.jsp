@@ -34,7 +34,7 @@
                         <c:forEach items="${orders}" var="o" varStatus="loop">
                             <tr>
                                 <th scope="row"><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>"># ${o.id}</a></th>
-                                <td>${o.status}</td>
+                                <td>${o.status.name}</td>
                                 <td>${o.firstName} ${o.lastName}</td>
                                 <td>${o.deliveryMethod}</td>
                                 <td><fmt:formatNumber value = "${o.totalPrice}" type = "currency"/></td>

@@ -12,7 +12,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String status;
+    @ManyToOne
+    private Status status;
 
     @OneToMany
     private List<OrderItem> orderItems;
@@ -77,11 +78,11 @@ public class Order {
         this.zip = zip;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

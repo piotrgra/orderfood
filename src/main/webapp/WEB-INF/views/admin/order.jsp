@@ -24,11 +24,10 @@
             <div class="col-lg-12">
                 <h5 class="font-weight-bold">Status zamówienia:</h5>
                 <form:form method="post" modelAttribute="order" action="/admin/orderEdit?orderId=${order.id}">
-                    <form:select path="status">
-                        <form:option value="NOWE"/>
-                        <form:option value="W REALIZACJI"/>
-                        <form:option value="ANULOWANE"/>
-                    </form:select>
+
+                    <form:select path="status" items="${status}" itemLabel="name" itemValue="id"/>
+                    <form:errors path="status" cssClass="errorMessage"/>
+
                     <form:errors path="status" cssClass="errorMessage"/>
                     <form:button class="btn btn-primary btn-sm" type="submit">Zapisz</form:button>
                 </form:form>
