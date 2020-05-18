@@ -1,5 +1,8 @@
 package pl.coderslab.orderfood.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,15 +21,9 @@ public class Order {
     @OneToMany
     private List<OrderItem> orderItems;
 
-    private String firstName;
-
-    private String lastName;
-
-    private String address;
-
-    private String zip;
-
-    private String city;
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Customer customer;
 
     private LocalDateTime date;
 
@@ -38,17 +35,17 @@ public class Order {
     @ManyToOne
     private PaymentMethod paymentMethod;
 
-    private String email;
-
-    private String phone;
-
     private double totalPrice;
 
     public Order() {
     }
 
-    public String getFirstName() {
-        return firstName;
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public LocalDateTime getDate() {
@@ -60,25 +57,6 @@ public class Order {
         this.date = LocalDateTime.now();
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
 
     public Status getStatus() {
         return status;
@@ -86,14 +64,6 @@ public class Order {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public DeliveryMethod getDeliveryMethod() {
@@ -110,30 +80,6 @@ public class Order {
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public double getTotalPrice() {

@@ -108,17 +108,20 @@ public class HomeController {
         List<OrderItem> orderItems = new ArrayList<>();
         Order order = new Order();
 
+        Customer customer = new Customer();
+        customer.setFirstName(userData.getCustomer().getFirstName());
+        customer.setLastName(userData.getCustomer().getLastName());
+        customer.setAddress(userData.getCustomer().getAddress());
+        customer.setZip(userData.getCustomer().getZip());
+        customer.setCity(userData.getCustomer().getCity());
+        customer.setEmail(userData.getCustomer().getEmail());
+        customer.setPhone(userData.getCustomer().getPhone());
 
+
+        order.setCustomer(customer);
         order.setStatus(setStatus(1));
-        order.setFirstName(userData.getFirstName());
-        order.setLastName(userData.getLastName());
-        order.setAddress(userData.getAddress());
-        order.setZip(userData.getZip());
-        order.setEmail(userData.getEmail());
         order.setDeliveryMethod(userData.getDeliveryMethod());
         order.setPaymentMethod(userData.getPaymentMethod());
-        order.setPhone(userData.getPhone());
-        order.setCity(userData.getCity());
         order.setTotalPrice(totalPrice());
 
         for (CartItem cartItem : cartItems) {

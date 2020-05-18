@@ -57,42 +57,42 @@
             <form:form class="needs-validation" action="/checkout" modelAttribute="order">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <form:label path="firstName">Imię</form:label>
-                        <form:input path="firstName" class="form-control"/>
+                        <form:label path="customer.firstName">Imię</form:label>
+                        <form:input path="customer.firstName" class="form-control"/>
 
                     </div>
                     <div class="col-md-6 mb-3">
-                        <form:label path="lastName">Nazwisko</form:label>
-                        <form:input path="lastName" class="form-control"/>
+                        <form:label path="customer.lastName">Nazwisko</form:label>
+                        <form:input path="customer.lastName" class="form-control"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
 
-                        <form:label path="email">Email</form:label>
-                        <form:input path="email" class="form-control"/>
+                        <form:label path="customer.email">Email</form:label>
+                        <form:input path="customer.email" class="form-control"/>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <form:label path="phone">Telefon</form:label>
-                        <form:input path="phone" class="form-control"/>
+                        <form:label path="customer.phone">Telefon</form:label>
+                        <form:input path="customer.phone" class="form-control"/>
                     </div>
 
                 </div>
 
                 <div class="mb-3">
-                    <form:label path="address">Adres</form:label>
-                    <form:input path="address" class="form-control"/>
+                    <form:label path="customer.address">Adres</form:label>
+                    <form:input path="customer.address" class="form-control"/>
                 </div>
 
                 <div class="row">
                     <div class="col-md-3 mb-3">
-                        <form:label path="zip">Kod pocztowy</form:label>
-                        <form:input path="zip" class="form-control"/>
+                        <form:label path="customer.zip">Kod pocztowy</form:label>
+                        <form:input path="customer.zip" class="form-control"/>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <form:label path="city">Miasto</form:label>
-                        <form:input path="city" class="form-control"/>
+                        <form:label path="customer.city">Miasto</form:label>
+                        <form:input path="customer.city" class="form-control"/>
                     </div>
 
                 </div>
