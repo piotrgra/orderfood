@@ -33,12 +33,17 @@
                         <tbody>
                         <c:forEach items="${orders}" var="o" varStatus="loop">
                             <tr>
-                                <th scope="row"><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>"># ${o.id}</a></th>
+                                <th scope="row"><a
+                                        href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>"># ${o.id}</a></th>
                                 <td>${o.status.name}</td>
                                 <td>${o.customer.firstName} ${o.customer.lastName}</td>
                                 <td>${o.deliveryMethod.name}</td>
-                                <td><fmt:formatNumber value = "${o.totalPrice}" type = "currency"/></td>
-                                <td>${o.date}</td>
+                                <td><fmt:formatNumber value="${o.totalPrice}" type="currency"/></td>
+                                <td>
+                                    <fmt:parseDate value="${ o.date }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                                    <fmt:formatDate pattern="HH:mm dd.MM.yyyy " value="${ parsedDateTime }" />
+
+                                </td>
                                 <td><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>">Akcja</a></td>
                             </tr>
                         </c:forEach>

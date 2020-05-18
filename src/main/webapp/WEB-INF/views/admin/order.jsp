@@ -21,7 +21,7 @@
             </div>
             <br/>
             <br/>
-            <div class="col-lg-12">
+            <div class="col-lg-12 center-text">
                 <h5 class="font-weight-bold">Status zamówienia:</h5>
                 <form:form method="post" modelAttribute="order" action="/admin/orderEdit?orderId=${order.id}">
 
@@ -69,7 +69,7 @@
                         <td><b>Adres:</b> ${order.customer.address} ${order.customer.zip} ${order.customer.city}</td>
                     </tr>
                     <tr>
-                        <td>Telefon:<b> ${order.customer.phone}</td>
+                        <td><b>Telefon:</b> ${order.customer.phone}</td>
                     </tr>
                     <tr>
                         <td><b>Email:</b> ${order.customer.email}</td>
@@ -81,7 +81,11 @@
                         <td><b>Metoda dostawy:</b> ${order.deliveryMethod.name}</td>
                     </tr>
                     <tr>
-                        <td><b>Data złożenia zamówienia:</b> ${order.date}</td>
+                        <td><b>Data złożenia zamówienia: </b>
+
+                            <fmt:parseDate value="${ order.date }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
+                            <fmt:formatDate pattern="HH:mm dd.MM.yyyy " value="${ parsedDateTime }" />
+                        </td>
                     </tr>
                 </table>
             </div>

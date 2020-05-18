@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 
 <jsp:include page="includes/header.jsp"/>
@@ -42,7 +43,7 @@
                                 <th scope="row">${i.id}</th>
                                 <td>${i.name}</td>
                                 <td>${i.description}</td>
-                                <td>${i.price}</td>
+                                <td><fmt:formatNumber value="${i.price}" type="currency"/></td>
                                 <td>${i.category.name}</td>
                                 <td>
                                     <a href="<c:url value="item/delete/${i.id}"/>"
