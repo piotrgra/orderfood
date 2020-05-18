@@ -9,11 +9,16 @@
 
 <!-- Page Content -->
 <div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+
+        <!-- zostawione aby była przerwa miedzy menu a produktami-->
+    </div>
 
     <div class="container-fluid">
         <div class="card shadow mb-4">
         <c:if test="${empty cart}">
             <h2 class="mt-5 text-center">Koszyk jest pusty</h2>
+            <p class="text-secondary big text-center">Może coś kupisz? <i class="fa fa-smile-o"></i></p>
         </c:if>
             <c:if test="${not empty cart}">
             <h1 class="mt-5 text-center">Koszyk:</h1>
@@ -45,7 +50,7 @@
 
 
                 <tr>
-                    <td colspan="5" class="text-center">Suma: <fmt:formatNumber value="${totalPrice}" type="currency"/></td>
+                    <td colspan="5" class="text-center text-primary">Suma: <fmt:formatNumber value="${totalPrice}" type="currency"/></td>
                 </tr>
 
                 </tbody>
