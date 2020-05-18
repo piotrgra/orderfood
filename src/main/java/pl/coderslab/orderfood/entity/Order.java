@@ -32,9 +32,11 @@ public class Order {
 
     private LocalDateTime orderReady;
 
-    private String deliveryMethod;
+    @ManyToOne
+    private DeliveryMethod deliveryMethod;
 
-    private String paymentMethod;
+    @ManyToOne
+    private PaymentMethod paymentMethod;
 
     private String email;
 
@@ -94,19 +96,19 @@ public class Order {
         this.city = city;
     }
 
-    public String getDeliveryMethod() {
+    public DeliveryMethod getDeliveryMethod() {
         return deliveryMethod;
     }
 
-    public void setDeliveryMethod(String deliveryMethod) {
+    public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 

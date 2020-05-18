@@ -19,14 +19,18 @@ public class HomeController {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final StatusRepository statusRepository;
+    private final PaymentMethodRepository paymentMethodRepository;
+    private final DeliveryMethodRepository deliveryMethodRepository;
 
-    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository) {
+    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository, PaymentMethodRepository paymentMethodRepository, DeliveryMethodRepository deliveryMethodRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.cart = cart;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
         this.statusRepository = statusRepository;
+        this.paymentMethodRepository = paymentMethodRepository;
+        this.deliveryMethodRepository = deliveryMethodRepository;
     }
 
     @ModelAttribute("categories")
@@ -104,6 +108,7 @@ public class HomeController {
         List<OrderItem> orderItems = new ArrayList<>();
         Order order = new Order();
 
+
         order.setStatus(setStatus(1));
         order.setFirstName(userData.getFirstName());
         order.setLastName(userData.getLastName());
@@ -140,6 +145,8 @@ public class HomeController {
     @GetMapping("/order")
     public String order(Model model) {
         model.addAttribute("order", new Order());
+        model.addAttribute("paymentMethods", paymentMethodRepository.findAll());
+        model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
         return "checkout";
     }
 

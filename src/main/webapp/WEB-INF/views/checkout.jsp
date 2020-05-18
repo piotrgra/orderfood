@@ -32,12 +32,13 @@
                             <h6 class="my-0">${c.product.name}</h6>
                             <small class="text-muted">Ilość: ${c.quantity}</small>
                         </div>
-                        <span class="text-muted"> <fmt:formatNumber value = "${c.product.price * c.quantity}" type = "currency"/></span>
+                        <span class="text-muted"> <fmt:formatNumber value="${c.product.price * c.quantity}"
+                                                                    type="currency"/></span>
                     </li>
                 </c:forEach>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Łącznie (PLN)</span>
-                    <strong><fmt:formatNumber value = "${totalPrice}" type = "currency"/></strong>
+                    <strong><fmt:formatNumber value="${totalPrice}" type="currency"/></strong>
                 </li>
             </ul>
 
@@ -99,33 +100,27 @@
                 <hr class="mb-4">
                 <h4 class="mb-3">Sposób dostawy:</h4>
                 <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <form:radiobutton id="deliver" value="deliver" path="deliveryMethod"
-                                          class="custom-control-input"/>
-                        <form:label for="deliver" path="deliveryMethod"
-                                    class="custom-control-label">Dostawa</form:label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <form:radiobutton id="self" value="self" path="deliveryMethod" class="custom-control-input"/>
-                        <form:label for="self" path="deliveryMethod"
-                                    class="custom-control-label">Odbiór wlasny</form:label>
-                    </div>
+                    <c:forEach items="${deliveryMethods}" var="d">
+                        <div class="custom-control custom-radio">
+                            <form:radiobutton id="delivery_${d.id}" value="${d}" path="deliveryMethod"
+                                              class="custom-control-input"/>
+                            <form:label for="delivery_${d.id}" path="deliveryMethod"
+                                        class="custom-control-label">${d.name}</form:label>
+                        </div>
+                    </c:forEach>
                 </div>
                 <hr class="mb-4">
 
                 <h4 class="mb-3">Metoda płatności</h4>
                 <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <form:radiobutton id="transfer" value="transfer" path="paymentMethod"
-                                          class="custom-control-input"/>
-                        <form:label for="transfer" path="deliveryMethod"
-                                    class="custom-control-label">Z góry</form:label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <form:radiobutton id="cash" value="cash" path="paymentMethod" class="custom-control-input"/>
-                        <form:label for="cash" path="deliveryMethod"
-                                    class="custom-control-label">Przy odbiorze</form:label>
-                    </div>
+                    <c:forEach items="${paymentMethods}" var="p">
+                        <div class="custom-control custom-radio">
+                            <form:radiobutton id="payment_${p.id}" value="${p}" path="paymentMethod"
+                                              class="custom-control-input"/>
+                            <form:label for="payment_${p.id}" path="paymentMethod"
+                                        class="custom-control-label">${p.name}</form:label>
+                        </div>
+                    </c:forEach>
                 </div>
                 <hr class="mb-4">
                 <form:button class="btn btn-primary btn-lg btn-block" type="submit">Zamawiam</form:button>
