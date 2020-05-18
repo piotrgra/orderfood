@@ -8,6 +8,10 @@ import pl.coderslab.orderfood.entity.Order;
 import pl.coderslab.orderfood.entity.Status;
 import pl.coderslab.orderfood.repository.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -85,17 +89,33 @@ public class AdminController {
         Order order = orderRepository.findById(orderId).get();
         model.addAttribute("order", order);
         model.addAttribute("status", statusRepository.findAll());
+        model.addAttribute("time", timeOrder());
         return "admin/order";
     }
 
     @PostMapping("/orderEdit")
-    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId, @ModelAttribute Status status) {
+    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId) {
 
         Order oldOrder = orderRepository.findById(orderId).get();
-        oldOrder.setStatus(status);
+        oldOrder.setStatus(order.getStatus());
+        oldOrder.setOrderReady(order.getOrderReady());
+
         orderRepository.save(oldOrder);
-        
+
         return "redirect:/admin/orderEdit?orderId=" + orderId;
+    }
+
+
+    public List<LocalDateTime> timeOrder() {
+        ArrayList<LocalDateTime> timeList = new ArrayList<>();
+
+        timeList.add(LocalDateTime.now().plusMinutes(30));
+        timeList.add(LocalDateTime.now().plusMinutes(45));
+        timeList.add(LocalDateTime.now().plusMinutes(60));
+        timeList.add(LocalDateTime.now().plusMinutes(75));
+
+
+        return timeList;
     }
 
 

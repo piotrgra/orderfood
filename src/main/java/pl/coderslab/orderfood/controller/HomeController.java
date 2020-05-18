@@ -143,12 +143,6 @@ public class HomeController {
         return "checkout";
     }
 
-    @GetMapping("/test")
-    public String test() {
-
-        return "admin2/index";
-    }
-
     public Status setStatus(long id) {
         return statusRepository.findById(id).get();
     }

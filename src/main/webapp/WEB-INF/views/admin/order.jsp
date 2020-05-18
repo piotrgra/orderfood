@@ -28,7 +28,11 @@
                     <form:select path="status" items="${status}" itemLabel="name" itemValue="id"/>
                     <form:errors path="status" cssClass="errorMessage"/>
 
-                    <form:errors path="status" cssClass="errorMessage"/>
+
+                    <form:select path="orderReady" items="${time}"/>
+                    <form:errors path="orderReady" cssClass="errorMessage"/>
+
+
                     <form:button class="btn btn-primary btn-sm" type="submit">Zapisz</form:button>
                 </form:form>
             </div>
