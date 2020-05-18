@@ -63,25 +63,25 @@
                 <h5 class="font-weight-bold">Szczegóły zamówienia:</h5>
                 <table class="table table-sm">
                     <tr>
-                        <td>Imię i nazwisko: ${order.firstName} ${order.lastName}</td>
+                        <td><b>Imię i nazwisko:</b> ${order.customer.firstName} ${order.customer.lastName}</td>
                     </tr>
                     <tr>
-                        <td>Adres: ${order.address} ${order.zip} ${order.city}</td>
+                        <td><b>Adres:</b> ${order.customer.address} ${order.customer.zip} ${order.customer.city}</td>
                     </tr>
                     <tr>
-                        <td>Telefon: ${order.phone}</td>
+                        <td>Telefon:<b> ${order.customer.phone}</td>
                     </tr>
                     <tr>
-                        <td>Email: ${order.email}</td>
+                        <td><b>Email:</b> ${order.customer.email}</td>
                     </tr>
                     <tr>
-                        <td>Rodzaj płatności: ${order.paymentMethod}</td>
+                        <td><b>Rodzaj płatności:</b> ${order.paymentMethod.name}</td>
                     </tr>
                     <tr>
-                        <td>Metoda dostawy: ${order.deliveryMethod}</td>
+                        <td><b>Metoda dostawy:</b> ${order.deliveryMethod.name}</td>
                     </tr>
                     <tr>
-                        <td>Data złożenia zamówienia: ${order.date}</td>
+                        <td><b>Data złożenia zamówienia:</b> ${order.date}</td>
                     </tr>
                 </table>
             </div>

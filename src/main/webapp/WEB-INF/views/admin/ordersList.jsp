@@ -35,8 +35,8 @@
                             <tr>
                                 <th scope="row"><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>"># ${o.id}</a></th>
                                 <td>${o.status.name}</td>
-                                <td>${o.firstName} ${o.lastName}</td>
-                                <td>${o.deliveryMethod}</td>
+                                <td>${o.customer.firstName} ${o.customer.lastName}</td>
+                                <td>${o.deliveryMethod.name}</td>
                                 <td><fmt:formatNumber value = "${o.totalPrice}" type = "currency"/></td>
                                 <td>${o.date}</td>
                                 <td><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>">Akcja</a></td>
