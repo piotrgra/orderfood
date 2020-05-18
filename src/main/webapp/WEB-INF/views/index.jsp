@@ -10,7 +10,6 @@
 <div class="container">
 
     <div class="row">
-
         <div class="col-lg-3">
             <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App"></a>
             <h1 class="my-4">Food App</h1>

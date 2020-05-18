@@ -45,7 +45,7 @@
 
 
                 <tr>
-                    <td colspan="5" class="text-right">Suma: <fmt:formatNumber value="${totalPrice}" type="currency"/></td>
+                    <td colspan="5" class="text-center">Suma: <fmt:formatNumber value="${totalPrice}" type="currency"/></td>
                 </tr>
 
                 </tbody>
