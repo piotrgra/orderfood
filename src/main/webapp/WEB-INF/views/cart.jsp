@@ -10,10 +10,13 @@
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row">
-
-        <div class="col-lg-12 text-center">
-            <h1 class="mt-5">Koszyk:</h1>
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+        <c:if test="${empty cart}">
+            <h2 class="mt-5 text-center">Koszyk jest pusty</h2>
+        </c:if>
+            <c:if test="${not empty cart}">
+            <h1 class="mt-5 text-center">Koszyk:</h1>
 
             <table class="table">
                 <thead>
@@ -31,10 +34,10 @@
                         <th scope="row">${loop.count}</th>
                         <td>${c.product.name}</td>
                         <td>${c.quantity}</td>
-                        <td><fmt:formatNumber value = "${c.product.price * c.quantity}" type = "currency"/></td>
+                        <td><fmt:formatNumber value="${c.product.price * c.quantity}" type="currency"/></td>
                         <td>
-                            <a href="<c:url value="/removeFromCart/${c.product.id}"/>" class="btn btn-danger btn-circle btn-sm">
-                                <i class="fas fa-trash"></i>
+                            <a href="<c:url value="/removeFromCart/${c.product.id}"/>" style="color: red;">
+                                <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
                             </a>
                         </td>
                     </tr>
@@ -42,7 +45,7 @@
 
 
                 <tr>
-                    <td colspan="5">Suma: <fmt:formatNumber value = "${totalPrice}" type = "currency"/></td>
+                    <td colspan="5" class="text-right">Suma: <fmt:formatNumber value="${totalPrice}" type="currency"/></td>
                 </tr>
 
                 </tbody>
@@ -54,6 +57,7 @@
                 </tr>
                 </tfoot>
             </table>
+            </c:if>
         </div>
 
     </div>

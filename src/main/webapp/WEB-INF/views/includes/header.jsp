@@ -12,7 +12,7 @@
     <link href="<c:url value="/resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<c:url value="/resources/bootstrap/css/shop-homepage.css" />" rel="stylesheet">
-
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 

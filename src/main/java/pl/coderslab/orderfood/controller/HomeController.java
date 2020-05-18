@@ -106,7 +106,7 @@ public class HomeController {
     public String placeOrder(@ModelAttribute Order userData, Model model) {
         List<CartItem> cartItems = cartItems();
         List<OrderItem> orderItems = new ArrayList<>();
-        Order order = new Order();
+
 
         Customer customer = new Customer();
         customer.setFirstName(userData.getCustomer().getFirstName());
@@ -117,7 +117,7 @@ public class HomeController {
         customer.setEmail(userData.getCustomer().getEmail());
         customer.setPhone(userData.getCustomer().getPhone());
 
-
+        Order order = new Order();
         order.setCustomer(customer);
         order.setStatus(setStatus(1));
         order.setDeliveryMethod(userData.getDeliveryMethod());
@@ -147,10 +147,17 @@ public class HomeController {
 
     @GetMapping("/order")
     public String order(Model model) {
-        model.addAttribute("order", new Order());
-        model.addAttribute("paymentMethods", paymentMethodRepository.findAll());
-        model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
-        return "checkout";
+        List<CartItem> cartItems = cartItems();
+
+        if (!cartItems.isEmpty()) {
+            model.addAttribute("order", new Order());
+            model.addAttribute("paymentMethods", paymentMethodRepository.findAll());
+            model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
+            return "checkout";
+        } else {
+            return "cart";
+        }
+
     }
 
     public Status setStatus(long id) {
