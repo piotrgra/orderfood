@@ -7,13 +7,17 @@
 
 <body>
 <!-- Page Content -->
+<div class="my-4">
+    <!-- zostawione aby była przerwa miedzy menu a produktami-->
+</div>
 <div class="container">
 
     <div class="row">
         <div class="col-lg-3">
 
             <div class="card shadow mb-4 text-center">
-                <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App" height="120" width="120"></a>
+                <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App"
+                                                   height="120" width="120"></a>
                 <h3 class="my-4 text-primary">Food App</h3>
                 <p class="text-secondary small"><i class="fa fa-address-card-o"></i> ul. Lamanska 1, 62-300 Krakow</p>
                 <p class="text-secondary small"><i class="fa fa-phone"></i> 555 555 555</p>
@@ -33,12 +37,6 @@
             </div>
         </div>
         <div class="col-lg-9">
-
-            <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-
-                <!-- zostawione aby była przerwa miedzy menu a produktami-->
-            </div>
-
 
             <div class="row">
                 <c:forEach items="${items}" var="i">
@@ -62,18 +60,10 @@
                         </div>
                     </div>
                 </c:forEach>
-
             </div>
-            <!-- /.row -->
-
         </div>
-        <!-- /.col-lg-9 -->
-
     </div>
-    <!-- /.row -->
-
 </div>
-<!-- /.container -->
 
 <jsp:include page="includes/footer.jsp"/>
 

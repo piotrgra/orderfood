@@ -4,9 +4,10 @@
 <html lang="en">
 <jsp:include page="includes/header.jsp"/>
 <body>
-<!-- Page Content -->
+<div class="my-4">
+    <!-- zostawione aby była przerwa miedzy menu a produktami-->
+</div>
 <div class="container">
-
     <div class="text-center" style="padding-top: 20px">
         <div class="error mx-auto" data-text="404">404</div>
         <p class="lead text-gray-800 mb-5">Strona nie została znaleziona</p>

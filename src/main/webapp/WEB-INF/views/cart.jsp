@@ -6,14 +6,10 @@
 <jsp:include page="includes/header.jsp"/>
 
 <body>
-
-<!-- Page Content -->
+<div class="my-4">
+    <!-- zostawione aby była przerwa miedzy menu a produktami-->
+</div>
 <div class="container">
-    <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-
-        <!-- zostawione aby była przerwa miedzy menu a produktami-->
-    </div>
-
     <div class="container-fluid">
         <div class="card shadow mb-4">
         <c:if test="${empty cart}">
@@ -64,10 +60,7 @@
             </table>
             </c:if>
         </div>
-
     </div>
-    <!-- /.row -->
-
 </div>
 <!-- /.container -->
 
