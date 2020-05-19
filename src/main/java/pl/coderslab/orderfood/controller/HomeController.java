@@ -2,9 +2,7 @@ package pl.coderslab.orderfood.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
 import pl.coderslab.orderfood.entity.*;
@@ -72,6 +70,7 @@ public class HomeController {
 
         List<Item> items = itemRepository.findAllByCategoryId(categoryId);
         model.addAttribute("items", items);
+
         return "index";
     }
 
@@ -108,7 +107,6 @@ public class HomeController {
     public String placeOrder(@ModelAttribute Order userData, Model model) {
         List<CartItem> cartItems = cartItems();
         List<OrderItem> orderItems = new ArrayList<>();
-
 
         Customer customer = new Customer();
         customer.setFirstName(userData.getCustomer().getFirstName());
@@ -166,14 +164,4 @@ public class HomeController {
         return statusRepository.findById(id).get();
     }
 
-    @GetMapping("/spring-mvc-java/uploadFile")
-    public String test() {
-        return "test";
-    }
-
-    @PostMapping("/spring-mvc-java/uploadFile")
-    public String submit(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
-        modelMap.addAttribute("file", file);
-        return "view";
-    }
 }

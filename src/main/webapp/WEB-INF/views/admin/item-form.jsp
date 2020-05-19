@@ -18,7 +18,7 @@
             </div>
             <div class="card-body">
                 <div class="col-lg-12 text-left">
-                    <form:form method="post" modelAttribute="item" action="/admin/item/add">
+                    <form:form method="post" modelAttribute="item" action="/admin/item/add" enctype="multipart/form-data">
                         <div class="mb-3">
                             <form:label path="name">Name:</form:label>
                             <form:input path="name"/>
@@ -37,6 +37,9 @@
                         <div class="mb-3">
                             <form:select path="category" items="${categories}" itemLabel="name" itemValue="id"/>
                             <form:errors path="category" cssClass="errorMessage"/>
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" name="file" />
                         </div>
 
 

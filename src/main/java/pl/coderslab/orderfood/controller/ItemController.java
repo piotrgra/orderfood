@@ -3,11 +3,15 @@ package pl.coderslab.orderfood.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.orderfood.entity.Category;
 import pl.coderslab.orderfood.entity.Item;
 import pl.coderslab.orderfood.repository.CategoryRepository;
 import pl.coderslab.orderfood.repository.ItemRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +21,13 @@ public class ItemController {
 
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
+    private final HttpServletRequest httpServletRequest;
+    public static final String uploadsDir = "/uploads/product-img/";
 
-    public ItemController(ItemRepository itemRepository, CategoryRepository categoryRepository) {
+    public ItemController(ItemRepository itemRepository, CategoryRepository categoryRepository, HttpServletRequest httpServletRequest) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
+        this.httpServletRequest = httpServletRequest;
     }
 
     @ModelAttribute("categories")
@@ -40,7 +47,20 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String addNewItemForm(@ModelAttribute Item item) {
+    public String addNewItemForm(@ModelAttribute Item item, @RequestParam("file") MultipartFile file) throws IOException {
+
+        String realPathToUploads = httpServletRequest.getServletContext().getRealPath(uploadsDir);
+        if (!new File(realPathToUploads).exists()) {
+            new File(realPathToUploads).mkdir();
+        }
+
+        String orgName = file.getOriginalFilename();
+        String filePath = realPathToUploads + orgName;
+        File dest = new File(filePath);
+        file.transferTo(dest);
+
+        item.setImage(file.getOriginalFilename());
+
         itemRepository.save(item);
         return "redirect:/admin/items";
     }
