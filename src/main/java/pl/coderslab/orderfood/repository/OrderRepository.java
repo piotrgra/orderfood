@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 import pl.coderslab.orderfood.entity.Category;
 import pl.coderslab.orderfood.entity.Order;
 
+import java.util.List;
+
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
+
+    List<Order> findAllByStatusId(Long id);
 }

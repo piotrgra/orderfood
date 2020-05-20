@@ -3,6 +3,7 @@ package pl.coderslab.orderfood.controller;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.entity.Order;
 import pl.coderslab.orderfood.entity.Status;
@@ -56,9 +57,25 @@ public class AdminController {
 
     @GetMapping("/orders")
     public String orders(Model model) {
+        model.addAttribute("allStatus", statusRepository.findAll());
+        model.addAttribute("status", new Status());
         model.addAttribute("orders", orderRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
         return "admin/ordersList";
     }
+
+    @PostMapping("/orders")
+    public String ordersPost(@ModelAttribute Status status, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "error";
+        }
+        model.addAttribute("allStatus", statusRepository.findAll());
+        model.addAttribute("status", new Status());
+        model.addAttribute("orders", orderRepository.findAllByStatusId(status.getId()));
+
+        return "admin/ordersList";
+
+    }
+
 
     @GetMapping("/items")
     public String items(Model model) {
