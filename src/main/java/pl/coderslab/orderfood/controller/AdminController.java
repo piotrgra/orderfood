@@ -51,7 +51,13 @@ public class AdminController {
     }
 
     @GetMapping("")
-    public String dashboard() {
+    public String dashboard(Model model) {
+
+        List<Order> allFinishOrder = orderRepository.findAllByStatusId(4); // wszystkie zamowienia zakonczone
+        double sum = allFinishOrder.stream()
+                .mapToDouble(Order::getTotalPrice).sum();
+        model.addAttribute("earnings", sum);
+
         return "admin/index";
     }
 

@@ -47,7 +47,7 @@
                                  alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">${i.name}</a>
+                                    <p class="text-primary">${i.name}</p>
                                 </h4>
                                 <h5><fmt:formatNumber value="${i.price}" type="currency"/></h5>
                                 <p class="card-text">${i.description}</p>
