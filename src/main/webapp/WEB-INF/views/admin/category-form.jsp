@@ -24,7 +24,6 @@
                             <form:input path="name"/>
                             <form:errors path="name" cssClass="errorMessage"/><br/>
                         </div>
-
                         <form:hidden path="id"/>
 
                         <form:button class="btn btn-primary btn-lg"

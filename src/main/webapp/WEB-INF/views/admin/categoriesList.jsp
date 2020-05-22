@@ -27,7 +27,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Kolejność</th>
                             <th scope="col">Nazwa</th>
                             <th scope="col">Usuń</th>
                             <th scope="col">Edytuj</th>
@@ -36,7 +36,14 @@
                         <tbody>
                         <c:forEach items="${categories}" var="c" varStatus="loop">
                             <tr>
-                                <th scope="row">${c.id}</th>
+                                <td>
+                                        ${c.categoryOrder}
+                                    <a href="<c:url value="category/up?categoryOrder=${c.categoryOrder}"/>"> <i
+                                            class="fas fa-arrow-up"></i> </a>
+                                    <a href="<c:url value="category/down?categoryOrder=${c.categoryOrder}"/>"> <i
+                                            class="fas fa-arrow-down"></i> </a>
+
+                                </td>
                                 <td>${c.name}</td>
                                 <td>
                                     <a href="<c:url value="category/delete/${c.id}"/>"

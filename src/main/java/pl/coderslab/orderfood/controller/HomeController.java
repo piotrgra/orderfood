@@ -1,5 +1,6 @@
 package pl.coderslab.orderfood.controller;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class HomeController {
 
     @ModelAttribute("categories")
     public List<Category> categories() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "categoryOrder"));
     }
 
     @ModelAttribute("allItems")

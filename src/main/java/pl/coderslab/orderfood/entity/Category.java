@@ -13,6 +13,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private int categoryOrder;
+
     @NotEmpty
     private String name;
 
@@ -43,7 +45,16 @@ public class Category {
         this.items = items;
     }
 
+    public int getCategoryOrder() {
+        return categoryOrder;
+    }
+
+    public void setCategoryOrder(int categoryOrder) {
+        this.categoryOrder = categoryOrder;
+    }
+
     public Category() {
     }
+
 
 }

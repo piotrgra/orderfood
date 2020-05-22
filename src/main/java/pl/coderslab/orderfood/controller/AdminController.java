@@ -91,7 +91,7 @@ public class AdminController {
 
     @GetMapping("/categories")
     public String categories(Model model) {
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "categoryOrder")));
         return "admin/categoriesList";
     }
 
