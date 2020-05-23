@@ -44,7 +44,7 @@
                         <div class="card h-100">
                             <img class="card-img-top"
                                  src="<c:url value="/uploads/product-img/${i.image}" />"
-                                 alt="">
+                                 alt="" height="40" width="30">
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <p class="text-primary">${i.name}</p>

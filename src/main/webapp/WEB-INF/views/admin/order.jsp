@@ -28,10 +28,9 @@
                     <form:select path="status" items="${status}" itemLabel="name" itemValue="id"/>
                     <form:errors path="status" cssClass="errorMessage"/>
 
-
-                    <form:select path="orderReady" items="${time}"/>
+                    <label for="time">Za ile minut gotowe: </label>
+                    <input type="number" id="time" name="time"/>
                     <form:errors path="orderReady" cssClass="errorMessage"/>
-
 
                     <form:button class="btn btn-primary btn-sm" type="submit">Zapisz</form:button>
                 </form:form>

@@ -10,8 +10,8 @@ import pl.coderslab.orderfood.entity.Status;
 import pl.coderslab.orderfood.repository.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -79,7 +79,6 @@ public class AdminController {
         model.addAttribute("orders", orderRepository.findAllByStatusId(status.getId()));
 
         return "admin/ordersList";
-
     }
 
 
@@ -109,37 +108,34 @@ public class AdminController {
 
     @GetMapping("/orderEdit")
     public String editOrder(@RequestParam long orderId, Model model) {
-        Order order = orderRepository.findById(orderId).get();
-        model.addAttribute("order", order);
-        model.addAttribute("status", statusRepository.findAll());
-        model.addAttribute("time", timeOrder());
-        return "admin/order";
+
+        Optional<Order> orderById = orderRepository.findById(orderId);
+        if (orderById.isPresent()) {
+            Order order = orderById.get();
+            model.addAttribute("order", order);
+            model.addAttribute("status", statusRepository.findAll());
+            return "admin/order";
+        }
+
+        return "admin/ordersList";
     }
 
     @PostMapping("/orderEdit")
-    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId) {
+    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId, @RequestParam int time) {
 
-        Order oldOrder = orderRepository.findById(orderId).get();
-        oldOrder.setStatus(order.getStatus());
-        oldOrder.setOrderReady(order.getOrderReady());
+        Optional<Order> orderById = orderRepository.findById(orderId);
+        if (orderById.isPresent()) {
+            Order oldOrder = orderById.get();
+            oldOrder.setStatus(order.getStatus());
+            oldOrder.setOrderReady(LocalDateTime.now().plusMinutes(time));
 
-        orderRepository.save(oldOrder);
+            orderRepository.save(oldOrder);
 
-        return "redirect:/admin/orderEdit?orderId=" + orderId;
+            return "redirect:/admin/orderEdit?orderId=" + orderId;
+        }
+
+        return "admin/ordersList";
+
     }
-
-
-    public List<LocalDateTime> timeOrder() {
-        ArrayList<LocalDateTime> timeList = new ArrayList<>();
-
-        timeList.add(LocalDateTime.now().plusMinutes(30));
-        timeList.add(LocalDateTime.now().plusMinutes(45));
-        timeList.add(LocalDateTime.now().plusMinutes(60));
-        timeList.add(LocalDateTime.now().plusMinutes(75));
-
-
-        return timeList;
-    }
-
 
 }
