@@ -20,25 +20,27 @@
                 <div class="col-lg-12 text-left">
                     <form:form method="post" modelAttribute="item" action="/admin/item/add" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <form:label path="name">Name:</form:label>
+                            <form:label path="name">Nazwa dania:</form:label>
                             <form:input path="name"/>
                             <form:errors path="name" cssClass="errorMessage"/><br/>
                         </div>
                         <div class="mb-3">
-                            <form:label path="description">Description:</form:label>
+                            <form:label path="description">Opis:</form:label>
                             <form:input path="description"/>
                             <form:errors path="description" cssClass="errorMessage"/><br/>
                         </div>
                         <div class="mb-3">
-                            <form:label path="price">Price:</form:label>
+                            <form:label path="price">Cena:</form:label>
                             <form:input path="price"/>
                             <form:errors path="price" cssClass="errorMessage"/><br/>
                         </div>
                         <div class="mb-3">
+                            <form:label path="price">Wybierz kategorie:</form:label>
                             <form:select path="category" items="${categories}" itemLabel="name" itemValue="id"/>
                             <form:errors path="category" cssClass="errorMessage"/>
                         </div>
                         <div class="mb-3">
+                            <form:label path="image">Dodaj zdjęcie:</form:label>
                             <input type="file" name="file" />
                         </div>
 
