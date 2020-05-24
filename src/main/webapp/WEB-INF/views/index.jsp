@@ -16,8 +16,7 @@
         <div class="col-lg-3">
 
             <div class="card shadow mb-4 text-center">
-                <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App"
-                                                   height="120" width="120"></a>
+                <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App"></a>
                 <h3 class="my-4 text-primary">Food App</h3>
                 <p class="text-secondary small"><i class="fa fa-address-card-o"></i> ul. Lamanska 1, 62-300 Krakow</p>
                 <p class="text-secondary small"><i class="fa fa-phone"></i> 555 555 555</p>

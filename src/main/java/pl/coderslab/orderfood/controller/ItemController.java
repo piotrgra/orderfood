@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.coderslab.orderfood.enmu.ItemState;
 import pl.coderslab.orderfood.entity.Category;
 import pl.coderslab.orderfood.entity.Item;
 import pl.coderslab.orderfood.repository.CategoryRepository;
@@ -60,6 +61,7 @@ public class ItemController {
         file.transferTo(dest);
 
         item.setImage(file.getOriginalFilename());
+        item.setState(ItemState.ACTIVE);
 
         itemRepository.save(item);
         return "redirect:/admin/items";

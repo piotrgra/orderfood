@@ -1,10 +1,17 @@
 package pl.coderslab.orderfood.entity;
 
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import pl.coderslab.orderfood.enmu.ItemState;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "items")
+@SQLDelete(sql = "UPDATE items SET state = 'DELETED' WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Where(clause = "state <> 'DELETED'")
 public class Item {
 
     @Id
@@ -13,6 +20,9 @@ public class Item {
 
     @NotEmpty
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private ItemState state;
 
     @NotEmpty
     private String description;
@@ -78,4 +88,16 @@ public class Item {
     public Item() {
     }
 
+    public ItemState getState() {
+        return state;
+    }
+
+    public void setState(ItemState state) {
+        this.state = state;
+    }
+
+    @PreRemove
+    public void deleteItem() {
+        this.state = ItemState.DELETED;
+    }
 }
