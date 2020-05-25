@@ -3,10 +3,12 @@ package pl.coderslab.orderfood.controller;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.entity.Category;
 import pl.coderslab.orderfood.repository.CategoryRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +35,15 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String processForm(@ModelAttribute Category category) {
-        category.setCategoryOrder(categories().size() + 1);
-        categoryRepository.save(category);
-        return "redirect:/admin/categories";
+    public String processForm(@Valid @ModelAttribute Category category, BindingResult bindingResult) {
+
+        if (!bindingResult.hasErrors()) {
+            category.setCategoryOrder(categories().size() + 1);
+            categoryRepository.save(category);
+            return "redirect:/admin/categories";
+        } else {
+            return "admin/category-form";
+        }
     }
 
     @GetMapping("/delete/{id}")

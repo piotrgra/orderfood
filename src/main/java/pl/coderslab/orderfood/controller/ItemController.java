@@ -2,6 +2,7 @@ package pl.coderslab.orderfood.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.orderfood.enmu.ItemState;
@@ -11,6 +12,7 @@ import pl.coderslab.orderfood.repository.CategoryRepository;
 import pl.coderslab.orderfood.repository.ItemRepository;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -48,23 +50,33 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String addNewItemForm(@ModelAttribute Item item, @RequestParam("file") MultipartFile file) throws IOException {
+    public String addNewItemForm(@Valid @ModelAttribute Item item, BindingResult bindingResult, @RequestParam("file") MultipartFile file) throws IOException {
 
-        String realPathToUploads = httpServletRequest.getServletContext().getRealPath(uploadsDir);
-        if (!new File(realPathToUploads).exists()) {
-            new File(realPathToUploads).mkdir();
+        if (file.isEmpty()) {
+
+            return "admin/item-form";
         }
 
-        String orgName = file.getOriginalFilename();
-        String filePath = realPathToUploads + orgName;
-        File dest = new File(filePath);
-        file.transferTo(dest);
+        if (!bindingResult.hasErrors()) {
+            String realPathToUploads = httpServletRequest.getServletContext().getRealPath(uploadsDir);
+            if (!new File(realPathToUploads).exists()) {
+                new File(realPathToUploads).mkdir();
+            }
 
-        item.setImage(file.getOriginalFilename());
-        item.setState(ItemState.ACTIVE);
+            String orgName = file.getOriginalFilename();
+            String filePath = realPathToUploads + orgName;
+            File dest = new File(filePath);
+            file.transferTo(dest);
 
-        itemRepository.save(item);
-        return "redirect:/admin/items";
+            item.setImage(file.getOriginalFilename());
+            item.setState(ItemState.ACTIVE);
+
+            itemRepository.save(item);
+            return "redirect:/admin/items";
+
+        } else {
+            return "admin/item-form";
+        }
     }
 
     @GetMapping("/delete/{id}")

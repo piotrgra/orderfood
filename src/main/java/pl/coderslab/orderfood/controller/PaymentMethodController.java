@@ -2,10 +2,12 @@ package pl.coderslab.orderfood.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.entity.PaymentMethod;
 import pl.coderslab.orderfood.repository.PaymentMethodRepository;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -26,9 +28,16 @@ public class PaymentMethodController {
     }
 
     @PostMapping("/add")
-    public String addNewPaymentMethodForm(@ModelAttribute PaymentMethod item) {
-        paymentMethodRepository.save(item);
-        return "redirect:/admin/paymentsMethod";
+    public String addNewPaymentMethodForm(@Valid @ModelAttribute PaymentMethod item, BindingResult bindingResult) {
+
+        if (!bindingResult.hasErrors()) {
+            paymentMethodRepository.save(item);
+            return "redirect:/admin/paymentsMethod";
+
+        } else {
+            return "admin/paymentMethod-form";
+        }
+
     }
 
     @GetMapping("/update/{id}")

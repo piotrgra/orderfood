@@ -22,22 +22,24 @@
                         <div class="mb-3">
                             <form:label path="name">Nazwa dania:</form:label>
                             <form:input path="name"/>
-                            <form:errors path="name" cssClass="errorMessage"/><br/>
+                            <form:errors path="name" class="text-danger" />
+                            
+                            <br/>
                         </div>
                         <div class="mb-3">
                             <form:label path="description">Opis:</form:label>
                             <form:input path="description"/>
-                            <form:errors path="description" cssClass="errorMessage"/><br/>
+                            <form:errors path="description" class="text-danger"/><br/>
                         </div>
                         <div class="mb-3">
                             <form:label path="price">Cena:</form:label>
                             <form:input path="price"/>
-                            <form:errors path="price" cssClass="errorMessage"/><br/>
+                            <form:errors path="price" class="text-danger"/><br/>
                         </div>
                         <div class="mb-3">
                             <form:label path="price">Wybierz kategorie:</form:label>
                             <form:select path="category" items="${categories}" itemLabel="name" itemValue="id"/>
-                            <form:errors path="category" cssClass="errorMessage"/>
+                            <form:errors path="category" class="text-danger"/>
                         </div>
                         <div class="mb-3">
                             <form:label path="image">Dodaj zdjęcie:</form:label>

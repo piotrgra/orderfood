@@ -2,10 +2,12 @@ package pl.coderslab.orderfood.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.entity.DeliveryMethod;
 import pl.coderslab.orderfood.repository.DeliveryMethodRepository;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -26,9 +28,14 @@ public class DeliveryMethodController {
     }
 
     @PostMapping("/add")
-    public String addNewDeliveryMethodForm(@ModelAttribute DeliveryMethod item) {
-        deliveryMethodRepository.save(item);
-        return "redirect:/admin/deliveriesMethod";
+    public String addNewDeliveryMethodForm(@Valid @ModelAttribute DeliveryMethod item, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
+            deliveryMethodRepository.save(item);
+            return "redirect:/admin/deliveriesMethod";
+
+        } else {
+            return "admin/deliveryMethod-form";
+        }
     }
 
     @GetMapping("/update/{id}")

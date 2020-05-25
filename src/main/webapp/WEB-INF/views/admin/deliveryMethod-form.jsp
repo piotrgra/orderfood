@@ -22,7 +22,7 @@
                         <div class="mb-3">
                             <form:label path="name">Name:</form:label>
                             <form:input path="name"/>
-                            <form:errors path="name" cssClass="errorMessage"/><br/>
+                            <form:errors path="name" class="text-danger"/><br/>
                         </div>
 
                         <form:hidden path="id"/>
