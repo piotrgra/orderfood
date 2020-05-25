@@ -1,6 +1,8 @@
 package pl.coderslab.orderfood.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -11,17 +13,24 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty
+    @NotBlank
     private String firstName;
 
+    @NotBlank
     private String lastName;
 
+    @NotBlank
     private String address;
 
+    @NotBlank
     private String zip;
 
+    @NotBlank
     private String city;
 
+    @Email
+    @NotEmpty
+    @NotBlank
     private String email;
 
     private String phone;

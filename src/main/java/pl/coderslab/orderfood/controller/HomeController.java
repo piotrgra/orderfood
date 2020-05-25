@@ -3,12 +3,14 @@ package pl.coderslab.orderfood.controller;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
 import pl.coderslab.orderfood.entity.*;
 import pl.coderslab.orderfood.repository.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +98,7 @@ public class HomeController {
     }
 
     @GetMapping("/removeFromCart/{id}")
-    public String removeFromCart(@PathVariable long id, Model model) {
+    public String removeFromCart(@PathVariable long id) {
         List<CartItem> cartItems = cartItems();
 
         cartItems.removeIf(cartItem -> cartItem.getProduct().getId() == id);
@@ -105,45 +107,41 @@ public class HomeController {
     }
 
     @PostMapping("/checkout")
-    public String placeOrder(@ModelAttribute Order userData, Model model) {
-        List<CartItem> cartItems = cartItems();
-        List<OrderItem> orderItems = new ArrayList<>();
+    public String placeOrder(@Valid @ModelAttribute Order order, BindingResult bindingResult, Model model) {
 
-        Customer customer = new Customer();
-        customer.setFirstName(userData.getCustomer().getFirstName());
-        customer.setLastName(userData.getCustomer().getLastName());
-        customer.setAddress(userData.getCustomer().getAddress());
-        customer.setZip(userData.getCustomer().getZip());
-        customer.setCity(userData.getCustomer().getCity());
-        customer.setEmail(userData.getCustomer().getEmail());
-        customer.setPhone(userData.getCustomer().getPhone());
+        if (!bindingResult.hasErrors()) {
+            List<CartItem> cartItems = cartItems();
+            List<OrderItem> orderItems = new ArrayList<>();
 
-        Order order = new Order();
-        order.setCustomer(customer);
-        order.setStatus(setStatus(1));
-        order.setDeliveryMethod(userData.getDeliveryMethod());
-        order.setPaymentMethod(userData.getPaymentMethod());
-        order.setTotalPrice(totalPrice());
+            order.setStatus(setStatus(1));
+            order.setTotalPrice(totalPrice());
 
-        for (CartItem cartItem : cartItems) {
+            for (CartItem cartItem : cartItems) {
 
-            Item item = cartItem.getProduct();
-            int quantity = cartItem.getQuantity();
-            OrderItem orderItem = new OrderItem();
+                Item item = cartItem.getProduct();
+                int quantity = cartItem.getQuantity();
+                OrderItem orderItem = new OrderItem();
 
-            orderItem.setItem(item);
-            orderItem.setQuantity(quantity);
+                orderItem.setItem(item);
+                orderItem.setQuantity(quantity);
 
-            orderItems.add(orderItem);
-            orderItemRepository.save(orderItem);
+                orderItems.add(orderItem);
+                orderItemRepository.save(orderItem);
+            }
+            order.setOrderItems(orderItems);
+            orderRepository.save(order);
+
+            cartItems.clear();
+
+            model.addAttribute("order", order);
+            return "ordered";
+        } else {
+
+            model.addAttribute("paymentMethods", paymentMethodRepository.findAll());
+            model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
+            return "checkout";
         }
-        order.setOrderItems(orderItems);
-        orderRepository.save(order);
 
-        cartItems.clear();
-
-        model.addAttribute("order", order);
-        return "ordered";
     }
 
     @GetMapping("/order")

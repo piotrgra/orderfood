@@ -4,6 +4,8 @@ import org.hibernate.annotations.Cascade;
 import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class Order {
 
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @Valid
     private Customer customer;
 
     private LocalDateTime date;
