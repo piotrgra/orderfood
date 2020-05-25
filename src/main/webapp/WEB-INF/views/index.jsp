@@ -42,7 +42,7 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <img class="card-img-top"
-                                 src="<c:url value="/uploads/product-img/${i.image}" />" alt="" >
+                                 src="<c:url value="${i.image}" />" alt="" >
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <p class="text-primary">${i.name}</p>

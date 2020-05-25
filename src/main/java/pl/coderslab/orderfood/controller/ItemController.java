@@ -11,7 +11,6 @@ import pl.coderslab.orderfood.entity.Item;
 import pl.coderslab.orderfood.repository.CategoryRepository;
 import pl.coderslab.orderfood.repository.ItemRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -24,13 +23,11 @@ public class ItemController {
 
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
-    private final HttpServletRequest httpServletRequest;
-    public static final String uploadsDir = "/uploads/product-img/";
+    public static final String uploadsDir = "/home/piotr/CodersLab/uploads/";
 
-    public ItemController(ItemRepository itemRepository, CategoryRepository categoryRepository, HttpServletRequest httpServletRequest) {
+    public ItemController(ItemRepository itemRepository, CategoryRepository categoryRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
-        this.httpServletRequest = httpServletRequest;
     }
 
     @ModelAttribute("categories")
@@ -57,8 +54,9 @@ public class ItemController {
             return "admin/item-form";
         }
 
+
         if (!bindingResult.hasErrors()) {
-            String realPathToUploads = httpServletRequest.getServletContext().getRealPath(uploadsDir);
+            String realPathToUploads = uploadsDir;
             if (!new File(realPathToUploads).exists()) {
                 new File(realPathToUploads).mkdir();
             }
@@ -68,7 +66,7 @@ public class ItemController {
             File dest = new File(filePath);
             file.transferTo(dest);
 
-            item.setImage(file.getOriginalFilename());
+            item.setImage(orgName);
             item.setState(ItemState.ACTIVE);
 
             itemRepository.save(item);
