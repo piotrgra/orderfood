@@ -58,12 +58,12 @@
                     <div class="col-md-6 mb-3">
                         <form:label path="customer.firstName">Imię</form:label>
                         <form:input path="customer.firstName" class="form-control"/>
-                        <form:errors path="customer.firstName" class="text-danger" />
+                        <form:errors path="customer.firstName" class="text-danger"/>
                     </div>
                     <div class="col-md-6 mb-3">
                         <form:label path="customer.lastName">Nazwisko</form:label>
                         <form:input path="customer.lastName" class="form-control"/>
-                        <form:errors path="customer.lastName"  class="text-danger"/>
+                        <form:errors path="customer.lastName" class="text-danger"/>
                     </div>
                 </div>
                 <div class="row">
@@ -71,13 +71,13 @@
 
                         <form:label path="customer.email">Email</form:label>
                         <form:input path="customer.email" class="form-control"/>
-                        <form:errors path="customer.email"  class="text-danger" />
+                        <form:errors path="customer.email" class="text-danger"/>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <form:label path="customer.phone">Telefon</form:label>
                         <form:input path="customer.phone" class="form-control"/>
-                        <form:errors path="customer.phone"  class="text-danger" />
+                        <form:errors path="customer.phone" class="text-danger"/>
                     </div>
 
                 </div>
@@ -85,19 +85,19 @@
                 <div class="mb-3">
                     <form:label path="customer.address">Adres</form:label>
                     <form:input path="customer.address" class="form-control"/>
-                    <form:errors path="customer.address"  class="text-danger" />
+                    <form:errors path="customer.address" class="text-danger"/>
                 </div>
 
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <form:label path="customer.zip">Kod pocztowy</form:label>
                         <form:input path="customer.zip" class="form-control"/>
-                        <form:errors path="customer.zip"  class="text-danger" />
+                        <form:errors path="customer.zip" class="text-danger"/>
                     </div>
                     <div class="col-md-3 mb-3">
                         <form:label path="customer.city">Miasto</form:label>
                         <form:input path="customer.city" class="form-control"/>
-                        <form:errors path="customer.city"  class="text-danger" />
+                        <form:errors path="customer.city" class="text-danger"/>
                     </div>
 
                 </div>
@@ -120,10 +120,10 @@
                 <div class="d-block my-3">
                     <c:forEach items="${paymentMethods}" var="p">
                         <div class="custom-control custom-radio">
-                            <form:radiobutton id="payment_${p.id}" value="${p}" path="paymentMethod"
+                            <form:radiobutton id="payment_${p}" value="${p}" path="paymentMethod"
                                               class="custom-control-input"/>
-                            <form:label for="payment_${p.id}" path="paymentMethod"
-                                        class="custom-control-label">${p.name}</form:label>
+                            <form:label for="payment_${p}" path="paymentMethod"
+                                        class="custom-control-label">${p}</form:label>
                         </div>
                     </c:forEach>
                 </div>

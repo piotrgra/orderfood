@@ -28,12 +28,22 @@
                     <form:select path="status" items="${status}" itemLabel="name" itemValue="id"/>
                     <form:errors path="status" cssClass="errorMessage"/>
 
-                    <label for="time">Za ile minut gotowe: </label>
-                    <input type="number" id="time" name="time"/>
-                    <form:errors path="orderReady" cssClass="errorMessage"/>
+                    <c:if test="${order.status.id == 1}">
+                        <label for="time">Za ile minut gotowe: </label>
+                        <input type="number" id="time" name="time"/>
+                        <form:errors path="orderReady" cssClass="errorMessage"/>
+
+                    </c:if>
 
                     <form:button class="btn btn-primary btn-sm" type="submit">Zapisz</form:button>
                 </form:form>
+            </div>
+            <div class="col-lg-12 center-text">
+                <p>Status: ${order.status.name}</p>
+                <p>Zamówienie bedzie gotowe:
+                    <fmt:parseDate value="${ order.orderReady }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
+                                   type="both"/>
+                    <fmt:formatDate pattern="HH:mm dd.MM.yyyy " value="${ parsedDateTime }"/></p>
             </div>
 
             <div class="col-lg-12 text-center">
@@ -74,7 +84,7 @@
                         <td><b>Email:</b> ${order.customer.email}</td>
                     </tr>
                     <tr>
-                        <td><b>Rodzaj płatności:</b> ${order.paymentMethod.name}</td>
+                        <td><b>Rodzaj płatności:</b> ${order.paymentMethod.name()}</td>
                     </tr>
                     <tr>
                         <td><b>Metoda dostawy:</b> ${order.deliveryMethod.name}</td>
@@ -82,8 +92,9 @@
                     <tr>
                         <td><b>Data złożenia zamówienia: </b>
 
-                            <fmt:parseDate value="${ order.date }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-                            <fmt:formatDate pattern="HH:mm dd.MM.yyyy " value="${ parsedDateTime }" />
+                            <fmt:parseDate value="${ order.date }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
+                                           type="both"/>
+                            <fmt:formatDate pattern="HH:mm dd.MM.yyyy " value="${ parsedDateTime }"/>
                         </td>
                     </tr>
                 </table>

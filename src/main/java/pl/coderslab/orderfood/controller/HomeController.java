@@ -1,5 +1,6 @@
 package pl.coderslab.orderfood.controller;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
+import pl.coderslab.orderfood.enmu.PaymentMethod;
 import pl.coderslab.orderfood.entity.*;
 import pl.coderslab.orderfood.repository.*;
 
@@ -22,23 +24,34 @@ public class HomeController {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final StatusRepository statusRepository;
-    private final PaymentMethodRepository paymentMethodRepository;
     private final DeliveryMethodRepository deliveryMethodRepository;
 
-    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository, PaymentMethodRepository paymentMethodRepository, DeliveryMethodRepository deliveryMethodRepository) {
+    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository, DeliveryMethodRepository deliveryMethodRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.cart = cart;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
         this.statusRepository = statusRepository;
-        this.paymentMethodRepository = paymentMethodRepository;
         this.deliveryMethodRepository = deliveryMethodRepository;
     }
 
     @ModelAttribute("categories")
     public List<Category> categories() {
         return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "categoryOrder"));
+    }
+
+    @ModelAttribute("paymentMethods")
+    public List<String> paymentMethods() {
+
+        PaymentMethod[] values = PaymentMethod.values();
+        List<String> allPaymentMethods = new ArrayList<>();
+
+        for (PaymentMethod payment : values) {
+            allPaymentMethods.add(payment.name());
+        }
+
+        return allPaymentMethods;
     }
 
     @ModelAttribute("allItems")
@@ -59,7 +72,8 @@ public class HomeController {
         for (CartItem cartItem : cartItems) {
             totalPrice += cartItem.getProduct().getPrice() * cartItem.getQuantity();
         }
-        return totalPrice;
+
+        return Math.round(totalPrice * 100.0) / 100.0;
     }
 
     @GetMapping("")
@@ -134,10 +148,26 @@ public class HomeController {
             cartItems.clear();
 
             model.addAttribute("order", order);
-            return "ordered";
+
+            if (order.getPaymentMethod() == PaymentMethod.DOTPAY) {
+                StringBuilder chk = new StringBuilder();
+                chk.append("qCkaA4PFfngrb0moFzBJEfg0y69f2aOl"); //PIN
+                chk.append("764501");// ID
+                chk.append(order.getTotalPrice()); // AMOUNT
+                chk.append("PLN"); //CURRENCY
+                chk.append("test"); // DESCRIPTION
+
+
+                System.out.println(chk);
+                String hashed = DigestUtils.sha256Hex(chk.toString());
+                System.out.println(hashed);
+                model.addAttribute("chk", hashed);
+            }
+
+
+            return "summary";
         } else {
 
-            model.addAttribute("paymentMethods", paymentMethodRepository.findAll());
             model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
             return "checkout";
         }
@@ -150,13 +180,18 @@ public class HomeController {
 
         if (!cartItems.isEmpty()) {
             model.addAttribute("order", new Order());
-            model.addAttribute("paymentMethods", paymentMethodRepository.findAll());
             model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
             return "checkout";
         } else {
             return "cart";
         }
 
+    }
+
+    @GetMapping("/ordered")
+    public String ordered(@RequestParam String orderId) {
+        System.out.println(orderId);
+        return "ordered";
     }
 
     public Status setStatus(long id) {

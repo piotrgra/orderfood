@@ -21,15 +21,13 @@ public class AdminController {
     private final CategoryRepository categoryRepository;
     private final OrderRepository orderRepository;
     private final DeliveryMethodRepository deliveryMethodRepository;
-    private final PaymentMethodRepository paymentMethodRepository;
     private final StatusRepository statusRepository;
 
-    public AdminController(ItemRepository itemRepository, CategoryRepository categoryRepository, OrderRepository orderRepository, DeliveryMethodRepository deliveryMethodRepository, PaymentMethodRepository paymentMethodRepository, StatusRepository statusRepository) {
+    public AdminController(ItemRepository itemRepository, CategoryRepository categoryRepository, OrderRepository orderRepository, DeliveryMethodRepository deliveryMethodRepository, StatusRepository statusRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
         this.deliveryMethodRepository = deliveryMethodRepository;
-        this.paymentMethodRepository = paymentMethodRepository;
         this.statusRepository = statusRepository;
     }
 
@@ -94,12 +92,6 @@ public class AdminController {
         return "admin/categoriesList";
     }
 
-    @GetMapping("/paymentsMethod")
-    public String paymentsMethod(Model model) {
-        model.addAttribute("paymentsMethod", paymentMethodRepository.findAll());
-        return "admin/paymentsList";
-    }
-
     @GetMapping("/deliveriesMethod")
     public String deliveriesMethod(Model model) {
         model.addAttribute("deliveriesMethod", deliveryMethodRepository.findAll());
@@ -121,14 +113,19 @@ public class AdminController {
     }
 
     @PostMapping("/orderEdit")
-    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId, @RequestParam int time) {
+    public String editOrderForm(@ModelAttribute Order order, @RequestParam long orderId, @RequestParam(required = false) Integer time) {
 
         Optional<Order> orderById = orderRepository.findById(orderId);
         if (orderById.isPresent()) {
             Order oldOrder = orderById.get();
             oldOrder.setStatus(order.getStatus());
-            oldOrder.setOrderReady(LocalDateTime.now().plusMinutes(time));
 
+            if (order.getStatus().getId() == 2) {
+                if (time == null) {
+                    time = 30;
+                }
+                oldOrder.setOrderReady(LocalDateTime.now().plusMinutes(time));
+            }
             orderRepository.save(oldOrder);
 
             return "redirect:/admin/orderEdit?orderId=" + orderId;

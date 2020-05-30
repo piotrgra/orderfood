@@ -54,12 +54,6 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="<c:url value="/admin/paymentsMethod" />">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Typy płatności</span></a>
-    </li>
-
-    <li class="nav-item">
         <a class="nav-link" href="<c:url value="/admin/deliveriesMethod" />">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Rodzaje dostawy</span></a>

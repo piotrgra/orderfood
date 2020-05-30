@@ -1,13 +1,12 @@
 package pl.coderslab.orderfood.entity;
 
 import org.hibernate.annotations.Cascade;
-import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
+import pl.coderslab.orderfood.enmu.PaymentMethod;
 
 @Entity
 @Table(name = "orders")
@@ -35,7 +34,7 @@ public class Order {
     @ManyToOne
     private DeliveryMethod deliveryMethod;
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
     private double totalPrice;
