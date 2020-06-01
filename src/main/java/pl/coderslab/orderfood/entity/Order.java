@@ -1,6 +1,7 @@
 package pl.coderslab.orderfood.entity;
 
 import org.hibernate.annotations.Cascade;
+import pl.coderslab.orderfood.enmu.DeliveryMethod;
 import pl.coderslab.orderfood.enmu.PaymentMethod;
 import pl.coderslab.orderfood.enmu.PaymentState;
 
@@ -35,7 +36,7 @@ public class Order {
 
     private LocalDateTime orderReady;
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private DeliveryMethod deliveryMethod;
 
     @Enumerated(EnumType.STRING)

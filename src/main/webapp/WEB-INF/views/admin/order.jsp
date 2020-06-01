@@ -84,7 +84,7 @@
                         <td><b>Email:</b> ${order.customer.email}</td>
                     </tr>
                     <tr>
-                        <td><b>Rodzaj płatności:</b> ${order.paymentMethod.name()}</td>
+                        <td><b>Rodzaj płatności:</b> ${order.paymentMethod.name}</td>
                     </tr>
                     <tr>
                         <td><b>Metoda dostawy:</b> ${order.deliveryMethod.name}</td>

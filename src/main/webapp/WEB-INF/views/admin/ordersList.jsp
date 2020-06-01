@@ -49,8 +49,8 @@
                                         href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>"># ${o.id}</a></th>
                                 <td>${o.status.name}</td>
                                 <td>${o.customer.firstName} ${o.customer.lastName}</td>
-                                <td>${o.deliveryMethod.name}</td>
-                                <td>${o.paymentMethod}</td>
+                                <td>${o.deliveryMethod.name()}</td>
+                                <td>${o.paymentMethod.name()}</td>
                                 <td>${o.paymentStatus}</td>
                                 <td><fmt:formatNumber value="${o.totalPrice}" type="currency"/></td>
                                 <td>
@@ -62,8 +62,6 @@
                                 <td><a href="<c:url value="/admin/orderEdit?orderId=${o.id}"/>">Akcja</a></td>
                             </tr>
                         </c:forEach>
-
-
                         </tbody>
 
                     </table>

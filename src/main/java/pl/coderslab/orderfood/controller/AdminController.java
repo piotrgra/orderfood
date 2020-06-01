@@ -7,7 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.entity.Order;
 import pl.coderslab.orderfood.entity.Status;
-import pl.coderslab.orderfood.repository.*;
+import pl.coderslab.orderfood.repository.CategoryRepository;
+import pl.coderslab.orderfood.repository.ItemRepository;
+import pl.coderslab.orderfood.repository.OrderRepository;
+import pl.coderslab.orderfood.repository.StatusRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,14 +23,12 @@ public class AdminController {
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
     private final OrderRepository orderRepository;
-    private final DeliveryMethodRepository deliveryMethodRepository;
     private final StatusRepository statusRepository;
 
-    public AdminController(ItemRepository itemRepository, CategoryRepository categoryRepository, OrderRepository orderRepository, DeliveryMethodRepository deliveryMethodRepository, StatusRepository statusRepository) {
+    public AdminController(ItemRepository itemRepository, CategoryRepository categoryRepository, OrderRepository orderRepository, StatusRepository statusRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.orderRepository = orderRepository;
-        this.deliveryMethodRepository = deliveryMethodRepository;
         this.statusRepository = statusRepository;
     }
 
@@ -90,12 +91,6 @@ public class AdminController {
     public String categories(Model model) {
         model.addAttribute("categories", categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "categoryOrder")));
         return "admin/categoriesList";
-    }
-
-    @GetMapping("/deliveriesMethod")
-    public String deliveriesMethod(Model model) {
-        model.addAttribute("deliveriesMethod", deliveryMethodRepository.findAll());
-        return "admin/deliveryList";
     }
 
     @GetMapping("/orderEdit")

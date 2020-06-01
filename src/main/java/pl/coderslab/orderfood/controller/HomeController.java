@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.orderfood.bean.Cart;
 import pl.coderslab.orderfood.bean.CartItem;
+import pl.coderslab.orderfood.enmu.DeliveryMethod;
 import pl.coderslab.orderfood.enmu.PaymentMethod;
 import pl.coderslab.orderfood.enmu.PaymentState;
 import pl.coderslab.orderfood.entity.*;
@@ -26,16 +27,14 @@ public class HomeController {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final StatusRepository statusRepository;
-    private final DeliveryMethodRepository deliveryMethodRepository;
 
-    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository, DeliveryMethodRepository deliveryMethodRepository) {
+    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.cart = cart;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
         this.statusRepository = statusRepository;
-        this.deliveryMethodRepository = deliveryMethodRepository;
     }
 
     @ModelAttribute("categories")
@@ -54,6 +53,17 @@ public class HomeController {
         }
 
         return allPaymentMethods;
+    }
+
+    @ModelAttribute("deliveryMethods")
+    public List<String> deliveryMethods() {
+        DeliveryMethod[] values = DeliveryMethod.values();
+        List<String> allDeliveryMethods = new ArrayList<>();
+
+        for (DeliveryMethod deliveryMethod : values) {
+            allDeliveryMethods.add(deliveryMethod.name());
+        }
+        return allDeliveryMethods;
     }
 
     @ModelAttribute("allItems")
@@ -186,7 +196,6 @@ public class HomeController {
             return "redirect:/summary?orderId=" + order.getId() + "&chk=" + hashed;
         } else {
 
-            model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
             return "checkout";
         }
 
@@ -200,7 +209,6 @@ public class HomeController {
             model.addAttribute("order", order.get());
             model.addAttribute("chk", chk);
         }
-
 
         return "summary";
     }
@@ -231,7 +239,6 @@ public class HomeController {
 
         if (!cartItems.isEmpty()) {
             model.addAttribute("order", new Order());
-            model.addAttribute("deliveryMethods", deliveryMethodRepository.findAll());
             return "checkout";
         } else {
             return "cart";
