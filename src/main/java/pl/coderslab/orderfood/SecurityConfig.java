@@ -24,5 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").authenticated()
                 .and().formLogin();
+
+        http.csrf().disable(); //wylaczenie zabepizecznie w celu otrzymywania informacji metoda post od DOTPAY
     }
+
 }

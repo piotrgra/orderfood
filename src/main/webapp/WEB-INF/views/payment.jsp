@@ -13,29 +13,9 @@
     <div class="container-fluid">
         <div class="col-lg-10 text-center">
             <div class="card shadow mb-4 text-center">
-                <h1 class="mt-5">Twoje zamowienie zostało złożone!</h1>
-                <h2>Numer zamowienia to: ${order.id}</h2>
-                <c:if test="${order.paymentMethod.name() == 'DOTPAY'}">
-                    <form action="https://ssl.dotpay.pl/test_payment/" method="get" target="_parent">
-
-
-                        <input type="hidden" name="amount" value="${order.totalPrice}"/>
-                        <input type="hidden" name="currency" value="PLN"/>
-
-                        <input type="hidden" name="id" value="764501"/>
-                        <input type="hidden" name="description" value="Zamówienie #${order.id}"/>
-
-                        <input type="hidden" name="chk" value="${chk}"/>
-                        <input type="hidden" name="url" value="http://localhost:8080/thanks?id=${order.id}"/>
-                        <input type="hidden" name="type" value="0"/>
-                        <input type="hidden" name="buttontext" value="Wroc na strone"/>
-                        <br>
-                        <button class="btn btn-success btn-lg">Zapłać!</button>
-                    </form>
-                </c:if>
-                <c:if test="${order.paymentMethod.name() == 'PRZY_ODBIORZE'}">
-                    <h3 class="text-success">Zamówienie zostanie niebawem dostarczone!</h3>
-                </c:if>
+                <h1 class="mt-5">Twoj status platnosci</h1>
+                <h2 class="text-success">Status: ${status}</h2>
+                <h2 class="mt-5">Numer zamówienia: ${order.id}</h2>
                 <table class="table text-center">
                     <thead>
                     <tr>
@@ -67,6 +47,7 @@
                     </tr>
                     </tfoot>
                 </table>
+
             </div>
         </div>
     </div>

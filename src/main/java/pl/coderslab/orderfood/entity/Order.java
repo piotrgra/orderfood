@@ -1,12 +1,13 @@
 package pl.coderslab.orderfood.entity;
 
 import org.hibernate.annotations.Cascade;
+import pl.coderslab.orderfood.enmu.PaymentMethod;
+import pl.coderslab.orderfood.enmu.PaymentState;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
-import pl.coderslab.orderfood.enmu.PaymentMethod;
 
 @Entity
 @Table(name = "orders")
@@ -26,6 +27,9 @@ public class Order {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @Valid
     private Customer customer;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentState paymentStatus;
 
     private LocalDateTime date;
 
@@ -59,6 +63,13 @@ public class Order {
         this.date = LocalDateTime.now();
     }
 
+    public PaymentState getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentState paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 
     public Status getStatus() {
         return status;

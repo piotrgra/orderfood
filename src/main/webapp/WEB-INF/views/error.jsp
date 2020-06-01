@@ -12,6 +12,8 @@
         <div class="error mx-auto" data-text="404">404</div>
         <p class="lead text-gray-800 mb-5">Strona nie została znaleziona</p>
         <p class="text-gray-500 mb-0">Wyglada na to ze znalazles bląd...</p>
+
+
         <a href="<c:url value="/"/>">&larr; Wróc do strony głównej</a>
     </div>
 </div>

@@ -35,6 +35,8 @@
                             <th scope="col">Status</th>
                             <th scope="col">Klient</th>
                             <th scope="col">Dostawa</th>
+                            <th scope="col">Rodzaj płatności</th>
+                            <th scope="col">Status płatności</th>
                             <th scope="col">Wartość</th>
                             <th scope="col">Data</th>
                             <th scope="col">Akcja</th>
@@ -48,6 +50,8 @@
                                 <td>${o.status.name}</td>
                                 <td>${o.customer.firstName} ${o.customer.lastName}</td>
                                 <td>${o.deliveryMethod.name}</td>
+                                <td>${o.paymentMethod}</td>
+                                <td>${o.paymentStatus}</td>
                                 <td><fmt:formatNumber value="${o.totalPrice}" type="currency"/></td>
                                 <td>
                                     <fmt:parseDate value="${ o.date }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
