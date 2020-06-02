@@ -1,6 +1,6 @@
 #READ ME! czytajMnie ;)
-##FoodApp (mniam)
-###Work in progress
+#FoodApp (mniam)
+#Work in progress
 Aplikacja do składania i przyjmowanie zamówień na jedzenie.
 
 #Możliwości użytkowniak:
