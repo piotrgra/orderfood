@@ -3,6 +3,8 @@
 ### Work in progress
 Aplikacja do składania i przyjmowanie zamówień na jedzenie.
 
+Projekt stworzony za pomocą Spring Boot.
+
 # Możliwości użytkowniak:
 - przejrzenia produkty z listy kategorii
 - dodanie do koszyka
@@ -14,6 +16,3 @@ Aplikacja do składania i przyjmowanie zamówień na jedzenie.
 - dodawanie produktów do kategorii (możliwość dodania obrazka produktu)
 - otrzymywanie zamówień
 - edycja zamówień(możliwość ustawienia przyblizonej daty dostawy/gotowosci zamowienia od odbioru)
-
-# Technologia
-Projekt został stworzony za pomocą SpringBoot.

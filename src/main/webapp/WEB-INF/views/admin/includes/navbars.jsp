@@ -11,9 +11,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/admin/" />">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-hamburger"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Food APP <sup>xD</sup></div>
     </a>
 
     <!-- Divider -->
@@ -31,7 +31,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Menu
+        Sklep
     </div>
 
     <li class="nav-item">
@@ -51,6 +51,14 @@
         <a class="nav-link" href="<c:url value="/admin/categories" />">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Kategorie</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+        <a class="nav-link" href="<c:url value="/admin/shopsetting" />">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Ustawienia sklepu</span></a>
     </li>
 
     <!-- Divider -->

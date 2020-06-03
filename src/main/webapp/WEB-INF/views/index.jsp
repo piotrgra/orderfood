@@ -16,11 +16,17 @@
         <div class="col-lg-3">
 
             <div class="card shadow mb-4 text-center">
-                <a href="<c:url value="/" />"><img src="<c:url value="/resources/image/logo.png" />" alt="Food App"></a>
-                <h3 class="my-4 text-primary">Food App</h3>
-                <p class="text-secondary small"><i class="fa fa-address-card-o"></i> ul. Lamanska 1, 62-300 Krakow</p>
-                <p class="text-secondary small"><i class="fa fa-phone"></i> 555 555 555</p>
-                <p class="text-secondary small"> Otwarte: 20:00 - 10:00</p>
+                <c:if test="${shop != null}">
+                    <a href="<c:url value="/" />"><img src="<c:url value="${shop.logo}" />" alt="${shop.name}"></a>
+                    <h3 class="my-4 text-primary">${shop.name}</h3>
+                    <p class="text-secondary small"><i class="fa fa-address-card-o"></i> ${shop.address}</p>
+                    <p class="text-secondary small"><i class="fa fa-phone"></i> ${shop.phone}</p>
+                    <p class="text-secondary small"> Godziny otwarcia: ${shop.open} - ${shop.close}</p>
+                </c:if>
+                <c:if test="${shop == null}">
+                    <h2 class="my-4 text-primary">Chyba pojawiles sie na stronie zbyt szybko. Wlasciciel jeszcze jej nie
+                        przygotował :) Zajrzyj tu później</h2>
+                </c:if>
             </div>
 
             <div class="card shadow mb-4">
@@ -42,7 +48,7 @@
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <img class="card-img-top"
-                                 src="<c:url value="${i.image}" />" alt="" >
+                                 src="<c:url value="${i.image}" />" alt="">
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <p class="text-primary">${i.name}</p>

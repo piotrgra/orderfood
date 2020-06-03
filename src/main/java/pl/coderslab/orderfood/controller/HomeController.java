@@ -27,14 +27,28 @@ public class HomeController {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final StatusRepository statusRepository;
+    private final ShopRepository shopRepository;
 
-    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository) {
+    public HomeController(ItemRepository itemRepository, CategoryRepository categoryRepository, Cart cart, OrderRepository orderRepository, OrderItemRepository orderItemRepository, StatusRepository statusRepository, ShopRepository shopRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.cart = cart;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
         this.statusRepository = statusRepository;
+        this.shopRepository = shopRepository;
+    }
+
+    @ModelAttribute("shop")
+    public ShopSetting shopModel() {
+
+        ShopSetting shopSetting = null;
+        List<ShopSetting> all = shopRepository.findAll();
+        if (all.size() > 0) {
+            shopSetting = all.get(0);
+        }
+
+        return shopSetting;
     }
 
     @ModelAttribute("categories")
@@ -91,6 +105,7 @@ public class HomeController {
     @GetMapping("")
     public String home(Model model) {
         model.addAttribute("items", itemRepository.findAll());
+
         return "index";
     }
 
@@ -184,12 +199,9 @@ public class HomeController {
                 chk.append("Zamówienie #" + order.getId()); // DESCRIPTION
                 chk.append("http://localhost:8080/thanks?id=" + order.getId());
                 chk.append("0");
-                chk.append("Wroc na strone");
+                chk.append("Wróć do sklepu");
 
-
-                System.out.println(chk);
                 hashed = DigestUtils.sha256Hex(chk.toString());
-                System.out.println(hashed);
 
             }
 

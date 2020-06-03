@@ -12,7 +12,7 @@
 <div class="container">
 
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="<c:url value="/resources/image/logo.png"/>" alt="" width="72"
+        <img class="d-block mx-auto mb-4" src="${shop.logo}" alt="" width="72"
              height="72">
         <h2>Składanie zamówienia</h2>
         <p class="lead">Proszę o podanie wszystkich ponizszych danych</p>
