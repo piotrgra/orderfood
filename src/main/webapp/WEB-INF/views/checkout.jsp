@@ -107,10 +107,8 @@
                 <div class="d-block my-3">
                     <c:forEach items="${deliveryMethods}" var="d">
                         <div class="custom-control custom-radio">
-                            <form:radiobutton id="delivery_${d}" value="${d}" path="deliveryMethod"
-                                              class="custom-control-input"/>
-                            <form:label for="delivery_${d}" path="deliveryMethod"
-                                        class="custom-control-label">${d}</form:label>
+                            <form:radiobutton id="delivery_${d}" value="${d}" path="deliveryMethod" class="custom-control-input"/>
+                            <form:label for="delivery_${d}" path="deliveryMethod" class="custom-control-label">${d}</form:label>
                         </div>
                     </c:forEach>
                 </div>

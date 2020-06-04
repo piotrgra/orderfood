@@ -3,8 +3,10 @@ package pl.coderslab.orderfood.controller;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.orderfood.enmu.DeliveryMethod;
+import pl.coderslab.orderfood.enmu.PaymentMethod;
+import pl.coderslab.orderfood.enmu.PaymentState;
 import pl.coderslab.orderfood.entity.Order;
 import pl.coderslab.orderfood.entity.Status;
 import pl.coderslab.orderfood.repository.CategoryRepository;
@@ -13,8 +15,10 @@ import pl.coderslab.orderfood.repository.OrderRepository;
 import pl.coderslab.orderfood.repository.StatusRepository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")
@@ -49,10 +53,47 @@ public class AdminController {
         return "admin/index";
     }
 
+    @ModelAttribute("paymentState")
+    public List<String> paymentState() {
+
+        PaymentState[] values = PaymentState.values();
+        List<String> allPaymentStates = new ArrayList<>();
+
+        for (PaymentState state : values) {
+            allPaymentStates.add(state.name());
+        }
+
+        return allPaymentStates;
+    }
+
+    @ModelAttribute("paymentMethods")
+    public List<String> paymentMethods() {
+
+        PaymentMethod[] values = PaymentMethod.values();
+        List<String> allPaymentMethods = new ArrayList<>();
+
+        for (PaymentMethod payment : values) {
+            allPaymentMethods.add(payment.name());
+        }
+
+        return allPaymentMethods;
+    }
+
+    @ModelAttribute("deliveryMethods")
+    public List<String> deliveryMethods() {
+        DeliveryMethod[] values = DeliveryMethod.values();
+        List<String> allDeliveryMethods = new ArrayList<>();
+
+        for (DeliveryMethod deliveryMethod : values) {
+            allDeliveryMethods.add(deliveryMethod.name());
+        }
+        return allDeliveryMethods;
+    }
+
     @GetMapping("")
     public String dashboard(Model model) {
 
-        List<Order> allFinishOrder = orderRepository.findAllByStatusId(4); // wszystkie zamowienia zakonczone
+        List<Order> allFinishOrder = orderRepository.findAllByStatusId(4, Sort.by(Sort.Direction.DESC, "id")); // wszystkie zamowienia zakonczone
         double sum = allFinishOrder.stream()
                 .mapToDouble(Order::getTotalPrice).sum();
         model.addAttribute("earnings", sum);
@@ -61,22 +102,52 @@ public class AdminController {
     }
 
     @GetMapping("/orders")
-    public String orders(Model model) {
+    public String orders(Model model, @RequestParam(required = false) String search, @RequestParam(required = false) String status, @RequestParam(required = false) String delivery, @RequestParam(required = false) String paymentMethod, @RequestParam(required = false) String paymentState) {
         model.addAttribute("allStatus", statusRepository.findAll());
-        model.addAttribute("status", new Status());
-        model.addAttribute("orders", orderRepository.findAll(Sort.by(Sort.Direction.DESC, "id")));
-        return "admin/ordersList";
-    }
+        List<Order> all = orderRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 
-    @PostMapping("/orders")
-    public String ordersPost(@ModelAttribute Status status, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "error";
+        if (search != null) {
+            if (!search.isEmpty()) {
+                all = orderRepository.findAllByCustomer_FirstNameContainingOrCustomer_LastNameContaining(search, search, Sort.by(Sort.Direction.DESC, "id"));
+            }
         }
-        model.addAttribute("allStatus", statusRepository.findAll());
-        model.addAttribute("status", new Status());
-        model.addAttribute("orders", orderRepository.findAllByStatusId(status.getId()));
 
+        if (status != null) {
+            if (!status.isEmpty()) {
+                all = all.stream()
+                        .filter(e -> e.getStatus().getId() == Long.parseLong(status))
+                        .collect(Collectors.toList());
+            }
+
+        }
+
+        if (delivery != null) {
+            if (!delivery.isEmpty()) {
+                all = all.stream()
+                        .filter(e -> e.getDeliveryMethod().name().equals(delivery))
+                        .collect(Collectors.toList());
+            }
+
+        }
+
+        if (paymentMethod != null) {
+            if (!paymentMethod.isEmpty()) {
+                all = all.stream()
+                        .filter(e -> e.getPaymentMethod().name().equals(paymentMethod))
+                        .collect(Collectors.toList());
+            }
+        }
+
+
+        if (paymentState != null) {
+            if (!paymentState.isEmpty()) {
+                all = all.stream()
+                        .filter(e -> e.getPaymentStatus().name().equals(paymentState))
+                        .collect(Collectors.toList());
+            }
+        }
+        
+        model.addAttribute("orders", all);
         return "admin/ordersList";
     }
 

@@ -20,14 +20,56 @@
             </div>
             <div class="card-body">
                 <div class="col-lg-12 text-center">
-                    <form:form action="/admin/orders" method="post" modelAttribute="status">
+                    <%--<form:form action="/admin/orders" method="post" modelAttribute="status">
                         <form:select path="id">
                             <c:forEach items="${allStatus}" var="s">
                                 <form:option value="${s.id}" label="${s.name}"/>
                             </c:forEach>
                         </form:select>
                         <form:button class="btn btn-primary btn-sm" type="submit">Szukaj</form:button>
-                    </form:form>
+                    </form:form>--%>
+
+                    <form action="/admin/orders" method="get">
+
+
+                        <label for="search">Szukana fraza:</label>
+                        <input type="text" name="search" id="search"/>
+
+                        <label for="status">Status</label>
+                        <select name="status" id="status">
+                            <option value=""></option>
+                            <c:forEach items="${allStatus}" var="s">
+                                <option value="${s.id}">${s.name}</option>
+                            </c:forEach>
+                        </select>
+
+                        <label for="delivery">Dostawa</label>
+                        <select name="delivery" id="delivery">
+                            <option value=""></option>
+                            <c:forEach items="${deliveryMethods}" var="d">
+                                <option value="${d}">${d}</option>
+                            </c:forEach>
+                        </select>
+
+                        <label for="paymentMethod">Metoda platnosci</label>
+                        <select name="paymentMethod" id="paymentMethod">
+                            <option value=""></option>
+                            <c:forEach items="${paymentMethods}" var="s">
+                                <option value="${s}">${s}</option>
+                            </c:forEach>
+                        </select>
+
+                        <label for="paymentState">Status płatności</label>
+                        <select name="paymentState" id="paymentState">
+                            <option value=""></option>
+                            <c:forEach items="${paymentState}" var="s">
+                                <option value="${s}">${s}</option>
+                            </c:forEach>
+                        </select>
+
+
+                        <input class="btn btn-primary btn-sm" type="submit" value="Szukaj"/>
+                    </form>
                     <table class="table">
                         <thead>
                         <tr>
