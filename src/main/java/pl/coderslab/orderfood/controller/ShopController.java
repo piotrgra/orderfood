@@ -18,7 +18,7 @@ import java.util.Optional;
 public class ShopController {
 
     private final ShopRepository shopRepository;
-    public static final String uploadsDir = "/home/piotr/CodersLab/uploads/";
+    public static final String uploadsDir = "/src/webapp/resources/upload/";
 
     public ShopController(ShopRepository shopRepository) {
         this.shopRepository = shopRepository;
