@@ -23,7 +23,7 @@ public class ItemController {
 
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
-    public static final String uploadsDir = "/";
+    public static final String uploadsDir = "/home/piotr/CodersLab/uploads/";
 
     public ItemController(ItemRepository itemRepository, CategoryRepository categoryRepository) {
         this.itemRepository = itemRepository;
