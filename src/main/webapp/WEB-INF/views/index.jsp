@@ -74,28 +74,6 @@
                             </div>
                         </div>
                     </div>
-                    <%--    2 formy wyswietlania przedmiotow
-                                        <div class="card mb-3" style="max-width: 620px;">
-                                            <div class="row no-gutters align-center">
-                                                <div class="col-md-4">
-                                                    <img src="<c:url value="${i.image}" />" class="card-img" alt="${i.name}">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">${i.name}</h5>
-
-                                                        <p class="card-text"><small class="text-muted"> ${i.description}</small></p>
-                                                        <p class="card-text"><fmt:formatNumber value="${i.price}" type="currency"/></p>
-
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <a href="<c:url value="/addToCart?id=${i.id}&&quantity=1"/>">
-                                                            <button type="button" class="btn btn-success">Dodaj do koszyka</button>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>--%>
                 </c:forEach>
             </div>
         </div>
