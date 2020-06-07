@@ -10,7 +10,7 @@ Admin: https://foodappgra.herokuapp.com/admin (admin/admin)
 Aplikacja do składania i przyjmowanie zamówień na jedzenie.
 Projekt stworzony za pomocą Spring Boot.
 
-#Instalacja
+# Instalacja
 - uruchom endpoint /admin/createStatus
 - w kontroloerze ItemController oraz ShopController podaj adres gdzie obrazy maja zostac zapisywane
 - w appliaction.properties ustaw odpowiednio zmienna: spring.resources.static-locations
