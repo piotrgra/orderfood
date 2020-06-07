@@ -197,7 +197,7 @@ public class HomeController {
                 chk.append(order.getTotalPrice()); // AMOUNT
                 chk.append("PLN"); //CURRENCY
                 chk.append("Zamówienie #" + order.getId()); // DESCRIPTION
-                chk.append("http://localhost:8080/thanks?id=" + order.getId());
+                chk.append("http://foodappgra.herokuapp.com/thanks?id=" + order.getId());
                 chk.append("0");
                 chk.append("Wróć do sklepu");
 

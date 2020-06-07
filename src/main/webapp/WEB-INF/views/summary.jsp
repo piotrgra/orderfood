@@ -26,7 +26,7 @@
                         <input type="hidden" name="description" value="Zamówienie #${order.id}"/>
 
                         <input type="hidden" name="chk" value="${chk}"/>
-                        <input type="hidden" name="url" value="http://localhost:8080/thanks?id=${order.id}"/>
+                        <input type="hidden" name="url" value="http://foodappgra.herokuapp.com/thanks?id=${order.id}"/>
                         <input type="hidden" name="type" value="0"/>
                         <input type="hidden" name="buttontext" value="Wróć do sklepu"/>
                         <br>
